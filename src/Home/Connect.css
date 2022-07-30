@@ -1,0 +1,13 @@
+.modal-metamask {
+    background-color: #f5861e;
+    text-align: center;
+    width: 80%;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.connect {
+    margin: 8px;
+    font-size: 24px;
+    margin: 24px 24px
+}

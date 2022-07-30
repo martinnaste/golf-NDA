@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'ThaLeah';
+    src: url('../ThaleahFat.ttf') format("truetype")
+}
+
+.home-container {
+    background: black;
+    height: 100vh;
+}
+
+.home {
+    height: 100%;
+    color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: Thaleah;
+    font-size: 32px;
+}

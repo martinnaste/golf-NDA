@@ -1,0 +1,18 @@
+.buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.button {
+    margin: 8px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+a {
+    text-decoration: none;
+    color: antiquewhite;
+}
