@@ -1,0 +1,28 @@
+table{
+    background:rgba(12, 17, 22, 0.644);
+  
+    border-radius: 10px;
+    
+    font-size: 32px;
+    font-family: thaleah;
+    color: antiquewhite;
+
+    /* box-shadow: 0px 0px 15px rgba(134, 187, 247, 0.644); */
+
+    
+
+}
+
+th, td{
+    font-size: 32px;
+    padding: 1px;
+    padding-left: 10px;
+}
+
+p{ 
+    color: antiquewhite;
+    font-family: thaleah;
+    margin:auto;
+
+}
+

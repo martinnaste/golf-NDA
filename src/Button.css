@@ -1,0 +1,18 @@
+
+.button {
+    color: antiquewhite;
+
+    background-color: rgba(12, 17, 22, 0.644);
+    width: 100px;
+    border-radius: 5px;
+    text-align: center;
+
+    padding: 5px;
+    margin: 3vh;
+
+
+}
+
+.button:hover{
+    transform: translate(0px, 2px);
+}

@@ -1,0 +1,16 @@
+.playerTableDiv {
+    width: 100%;
+    display: flex;
+    flex-Direction: row;
+    align-Items: baseline;
+    justify-Content: center;
+    align-self: stretch;
+}
+
+.playerTable{
+    max-height: 250px;
+    height: 250px;
+    display: block;
+    overflow-y: scroll;
+    margin: 5px
+}

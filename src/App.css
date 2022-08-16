@@ -7,3 +7,9 @@
   font-family: 'ThaLeah';
   src: url('ThaleahFat.ttf') format("truetype")
 }
+
+.page{
+  background-color: rgb(45, 46, 59);
+
+  height: 90vh;
+}

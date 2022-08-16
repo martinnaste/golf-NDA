@@ -6,7 +6,10 @@ function App() {
 
         <div className='app'>
             <Home />
+            
         </div>
+
+        
     );
 }
 

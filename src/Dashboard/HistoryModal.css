@@ -1,0 +1,64 @@
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.history-content {
+    display: flex;
+    
+    width: 42vh;
+    height: 60vh;
+    background-color: rgba(46, 46, 46, 0.952);
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-text {
+    font-size: 24px;
+}
+
+.input {
+    width: 80%;
+    height: 24px;
+    margin-top: 12px;
+    background-color: rgb(250, 235, 215, 0.5);
+    border: none;
+    border-radius: 3px;
+    outline: none;
+}
+
+.modal-login {
+    width: 100%;
+    border-radius: 3px;
+}
+
+.login-hr {
+    width: 80%;
+    margin: 0;
+    background-color: gray;
+    height: 2px;
+    border-radius: 5px;
+}
+
+.login-text-container {
+    background-color: darkcyan;
+    margin-top: 16px;
+    text-align: center;
+    width: 80%;
+    cursor: pointer;
+}
