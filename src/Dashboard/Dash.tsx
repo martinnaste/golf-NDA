@@ -12,7 +12,7 @@ const Dash: FC = () => {
     const [showHistoryModal, setShowHistoryModal] = useState(false);
     return (
         <div className='page'>
-            
+
             <div style={{position:"absolute"}}>
             <LinkButton text='Back' redirect="/" />
             </div>

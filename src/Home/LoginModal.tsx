@@ -1,19 +1,27 @@
 import React, { FC } from 'react'
 import Connect from './Connect'
 import './LoginModal.css'
+import UserPass from './UserPass';
 
 
 const LoginModal:FC<ILoginProps> = (props) => {
+    function clickme(){
+        console.log();
+        
+    }
+
+
   return (
     <div className='modal' onClick={props.showLoginModalHandler}>
         <div className='modal-content' onClick={e => e.stopPropagation()}>
             <div className='modal-login'>
                 <div className='login'>
-                    <input id='username' className='input' placeholder='USERNAME'></input>
-                    <input id='password' className='input' placeholder='PASSWORD'></input>
-                    <div className='login-text-container'>
+                    {/* <input id='username' className='input' placeholder='USERNAME'></input>
+                    <input id='password' className='input' placeholder='PASSWORD'></input> */}
+                    <UserPass username={"test"}/>
+                    {/* <div className='login-text-container'>
                         <h3 className='login-text'>Login</h3>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <hr className='login-hr'></hr>
