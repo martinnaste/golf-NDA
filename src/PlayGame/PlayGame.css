@@ -12,5 +12,6 @@
     height: 250px;
     display: block;
     overflow-y: scroll;
-    margin: 5px
+    margin: 5px;
+    overflow-x: hidden;
 }

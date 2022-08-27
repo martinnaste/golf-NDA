@@ -5,6 +5,7 @@ import '../App.css'
 import './PlayGame.css'
 import PlayerRow from './PlayerRow'
 import NewPlayer from './NewPlayerModal'
+import Hole from '../Hole/Hole'
 
 const PlayGame: FC = () => {
     const [newPlayerModal, setShowNewPlayerModal] = useState(false);
@@ -12,19 +13,7 @@ const PlayGame: FC = () => {
     const [allPlayers, setAllPlayers]= useState<IPlayer[]>()
     const [playerTable, setPlayerTable]= useState<IPlayer[]>()
     const [playingTable, setPlayingTable]= useState<IPlayer[]>()
-
-    function showNewPlayerModalHandler() {
-        if(newPlayerModal && playerAdded){
-            getAllPlayers()
-            setPlayerAdded(false)
-        }
-        setShowNewPlayerModal(!newPlayerModal);
-    }
-
-    function playerWasAdded() {
-        setPlayerAdded(true)
-    }
-    
+    const dummyPlayer: IPlayer = {Name: ''}
     useEffect(() => {
         getAllPlayers()
     }, [])
@@ -43,9 +32,9 @@ const PlayGame: FC = () => {
 
                     <table className='playerTable' style={{ width: "90%", marginTop: "25px", marginLeft: '15px' }}>
                         <tbody>
-                            <tr style={{ textAlign: "left", fontSize: "24px" }} onClick={() => console.log("burh")}>
+                            <tr style={{ textAlign: "left", fontSize: "24px" }} >
 
-                                <td style={{ position: 'sticky' }}>
+                                <td >
                                     Players
                                 </td>
                             </tr>
@@ -66,6 +55,13 @@ const PlayGame: FC = () => {
                 </div>
                 <Button text='New Player' onClick={() => {showNewPlayerModalHandler()}}></Button>
                 {newPlayerModal && <NewPlayer allPlayers={allPlayers} showNewPlayerModal={showNewPlayerModalHandler} playerAdded={playerWasAdded}/>}
+                
+                <div style={{display:'flex'}}>
+                    <Button text='New Player' onClick={addPlayer()}></Button>
+                    <Button text='Play!' onClick={startGame()} ></Button>
+                    <Hole players={playingTable ? playingTable : [dummyPlayer]} hole={playerTable && playerTable.length} ></Hole>
+                </div>
+               
             </div>
         </div>
     )
@@ -85,6 +81,19 @@ const PlayGame: FC = () => {
         setAllPlayers(players);
         setPlayerTable(players);
     }
+
+    function addPlayer(){
+
+    }
+
+    function startGame() {
+        return( <div>
+            
+            </div>)
+       
+    }
+    
+    
 
     function movePlayer(player: IPlayer, left: boolean) {
         var tempPlayerTable: IPlayer[]
@@ -110,6 +119,18 @@ const PlayGame: FC = () => {
             tempPlayerTable.push(player);
             setPlayerTable([...tempPlayerTable])
         }   
+    }
+
+    function showNewPlayerModalHandler() {
+        if(newPlayerModal && playerAdded){
+            getAllPlayers()
+            setPlayerAdded(false)
+        }
+        setShowNewPlayerModal(!newPlayerModal);
+    }
+
+    function playerWasAdded() {
+        setPlayerAdded(true)
     }
 }
 

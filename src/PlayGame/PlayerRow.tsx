@@ -7,9 +7,9 @@ const PlayerRow:FC<IPlayerRowProps> = (props) => {
         if(props.playerTable){
             return props.playerTable.map((player, index) => {    
                 return (
-                    <tr key={index}>
+                    <tr  key={index}>
                         { !props.left &&
-                            <td onClick={()=> {props.movePlayer(player, props.left)}}>
+                            <td  onClick={()=> {props.movePlayer(player, props.left)}}>
                                 -
                             </td>
                         }
