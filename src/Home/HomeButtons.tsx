@@ -18,7 +18,8 @@ const HomeButtons = () => {
             </h4>
             |
             <h4 className='button' >
-                <Link to="/Dash"> GUEST </Link>
+                <Link to="/Dash" state={{myThing: "test"}}> GUEST </Link>
+                {/* <Link to="/Dash" state={{myThing: "yeehaw"}}> GUEST </Link> */}
             </h4>
             {showLoginModal && <LoginModal showLoginModalHandler={showLoginModalHandler}/>}
         </div>

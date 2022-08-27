@@ -8,10 +8,6 @@ const Button:FC<ButtonProps> = (props) => {
         <div> 
             <p className='button' onClick={props.onClick}>
                 {props.text}
-
-             
-               
-               
             </p>
         </div>
     )

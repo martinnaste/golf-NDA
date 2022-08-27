@@ -72,8 +72,8 @@ const Home:FC = () => {
     }
 
     function returnAllLeaderboards(){
-        return allLeaderboards.map((leaderboard) => {
-                return (<div>
+        return allLeaderboards.map((leaderboard, index) => {
+                return (<div key={index}>
                     {leaderboard.dateTime}
                 </div>);
         });
@@ -111,7 +111,7 @@ const Home:FC = () => {
     }
 
     return (
-        <div className='home-container'>
+        <div className='home-container' >
             <div className='home'>
                 HYPNOS MOORE RIVER GOLF
                 <HomeButtons />

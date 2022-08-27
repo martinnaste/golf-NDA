@@ -4,10 +4,26 @@ import LinkButton from '../LinkButton'
 import '../App.css'
 import './PlayGame.css'
 import PlayerRow from './PlayerRow'
+import NewPlayer from './NewPlayerModal'
 
 const PlayGame: FC = () => {
+    const [newPlayerModal, setShowNewPlayerModal] = useState(false);
+    const [playerAdded, setPlayerAdded] = useState(false);
+    const [allPlayers, setAllPlayers]= useState<IPlayer[]>()
     const [playerTable, setPlayerTable]= useState<IPlayer[]>()
     const [playingTable, setPlayingTable]= useState<IPlayer[]>()
+
+    function showNewPlayerModalHandler() {
+        if(newPlayerModal && playerAdded){
+            getAllPlayers()
+            setPlayerAdded(false)
+        }
+        setShowNewPlayerModal(!newPlayerModal);
+    }
+
+    function playerWasAdded() {
+        setPlayerAdded(true)
+    }
     
     useEffect(() => {
         getAllPlayers()
@@ -48,7 +64,8 @@ const PlayGame: FC = () => {
                         </tbody>
                     </table>
                 </div>
-                <Button text='New Player' onClick={addPlayer()}></Button>
+                <Button text='New Player' onClick={() => {showNewPlayerModalHandler()}}></Button>
+                {newPlayerModal && <NewPlayer allPlayers={allPlayers} showNewPlayerModal={showNewPlayerModalHandler} playerAdded={playerWasAdded}/>}
             </div>
         </div>
     )
@@ -57,19 +74,16 @@ const PlayGame: FC = () => {
         const response = await fetch(`http://localhost:5001/players/`);
  
         if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
         }
     
         const players: IPlayer[] = await response.json();
         players.sort((a: any, b: any) => a.Name - b.Name)
         console.log(players)
+        setAllPlayers(players);
         setPlayerTable(players);
-    }
-
-    function addPlayer(){
-
     }
 
     function movePlayer(player: IPlayer, left: boolean) {

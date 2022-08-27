@@ -4,7 +4,9 @@
 }
 
 .home-container {
-    background: black;
+    /* background: black; */
+    background: rgb(45, 46, 59);
+    
     height: 100vh;
 }
 
