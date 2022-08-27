@@ -89,7 +89,7 @@ const Dash: FC = () => {
             <div style={{display: "flex",justifyContent: "center"}}>
                 <Button text="History" onClick={showHistoryModalHandler} />
                 { myThing &&
-                    <LinkButton text="Play" redirect={"../PlayGame"} />
+                    <LinkButton text="New Game" redirect={"../PlayGame"} />
                 }
                 {/* If Modal is visable (true) show it */}
                 {showHistoryModal && <HistoryModal showHistoryModalHandler={showHistoryModalHandler}/>}

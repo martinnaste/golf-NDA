@@ -6,6 +6,19 @@ import './PlayGame.css'
 import PlayerRow from './PlayerRow'
 import NewPlayer from './NewPlayerModal'
 import Hole from '../Hole/Hole'
+import { Link } from 'react-router-dom'
+
+export interface holeProps {
+    holes: Hole[]
+}
+export interface Hole {
+    holeNumber: number,
+    holeScores: ScoreTable
+}
+export interface ScoreTable {
+    playerName: string,
+    score: number
+}
 
 const PlayGame: FC = () => {
     const [newPlayerModal, setShowNewPlayerModal] = useState(false);
@@ -13,11 +26,14 @@ const PlayGame: FC = () => {
     const [allPlayers, setAllPlayers]= useState<IPlayer[]>()
     const [playerTable, setPlayerTable]= useState<IPlayer[]>()
     const [playingTable, setPlayingTable]= useState<IPlayer[]>()
-    const dummyPlayer: IPlayer = {Name: ''}
+  
+    
+    var holeProps = [playingTable, 1]
     useEffect(() => {
         getAllPlayers()
     }, [])
     
+
     return (
         <div className='page'>
             <div style={{ position: "absolute" }}>
@@ -53,13 +69,14 @@ const PlayGame: FC = () => {
                         </tbody>
                     </table>
                 </div>
-                <Button text='New Player' onClick={() => {showNewPlayerModalHandler()}}></Button>
-                {newPlayerModal && <NewPlayer allPlayers={allPlayers} showNewPlayerModal={showNewPlayerModalHandler} playerAdded={playerWasAdded}/>}
+               
+               
                 
                 <div style={{display:'flex'}}>
-                    <Button text='New Player' onClick={addPlayer()}></Button>
-                    <Button text='Play!' onClick={startGame()} ></Button>
-                    <Hole players={playingTable ? playingTable : [dummyPlayer]} hole={playerTable && playerTable.length} ></Hole>
+                     <Button text='New Player' onClick={() => {showNewPlayerModalHandler()}}></Button>
+                     {newPlayerModal && <NewPlayer allPlayers={allPlayers} showNewPlayerModal={showNewPlayerModalHandler} playerAdded={playerWasAdded}/>}
+                     <Link className='button' to="/Hole" state={{holeProps: {playingTable: playingTable, number: 1}}}> Play! </Link>
+    
                 </div>
                
             </div>
@@ -88,7 +105,7 @@ const PlayGame: FC = () => {
 
     function startGame() {
         return( <div>
-            
+            bruh
             </div>)
        
     }

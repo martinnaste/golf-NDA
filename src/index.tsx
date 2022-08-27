@@ -16,7 +16,7 @@ root.render(
             <Route path="/" element={<App />} />
             <Route path="Dash" element={<Dash />} />
             <Route path="PlayGame" element={<PlayGame />} />
-            
+            <Route path="Hole" element={<Hole/>} />
         </Routes>
     </Router>
 );
