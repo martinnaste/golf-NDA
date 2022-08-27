@@ -19,4 +19,20 @@
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
+    overflow-y: scroll;
+}
+
+.history-content-container {
+    width: 36vh;
+    height: 55vh;
+}
+
+.history-item-container{
+    display: flex;
+    height: 32px;
+    margin-bottom: 10px;
+    padding: 12px;
+    text-align: center;
+    background: rgba(12, 17, 22, 0.644);
+    border-radius: 5px;
 }

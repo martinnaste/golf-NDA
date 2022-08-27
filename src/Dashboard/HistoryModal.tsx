@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
-
+import './HistoryModal.css'
 
 
 const LoginModal: FC<IHistoryProps> = (props) => {
@@ -28,9 +28,12 @@ const LoginModal: FC<IHistoryProps> = (props) => {
             return allLeaderboards.map((leaderboard, index) => {
                 var date = new Date(leaderboard.dateTime).toDateString()
                 return(
-                    <p key={index}>
-                        {date}
-                    </p>
+                    // <div key={index}>
+                    <div className='history-item-container' key={index}> 
+                        <p>
+                            {date}
+                        </p>
+                    </div>
                 )
             })
         }
@@ -39,7 +42,9 @@ const LoginModal: FC<IHistoryProps> = (props) => {
     return (
         <div className='modal' onClick={props.showHistoryModalHandler}>
             <div className='history-content' onClick={e => e.stopPropagation()}>
-                {displayAllLeaderboards()}
+                <div className='history-content-container'>
+                    {displayAllLeaderboards()}
+                </div>
             </div>
         </div>
     )

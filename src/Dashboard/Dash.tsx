@@ -17,8 +17,8 @@ const Dash: FC = () => {
     // const {myThing} = useParams()
     // console.log(myThing)
 
-    const location: any = useLocation()
-    const { myThing } = location.state
+    // const location: any = useLocation()
+    // const { myThing } = location.state
     
 
     useEffect(() => {
@@ -88,9 +88,9 @@ const Dash: FC = () => {
             {/* Buttons */}
             <div style={{display: "flex",justifyContent: "center"}}>
                 <Button text="History" onClick={showHistoryModalHandler} />
-                { myThing &&
-                    <LinkButton text="New Game" redirect={"../PlayGame"} />
-                }
+                {/* { myThing && */}
+                    <LinkButton text="Play" redirect={"../PlayGame"} />
+                {/* } */}
                 {/* If Modal is visable (true) show it */}
                 {showHistoryModal && <HistoryModal showHistoryModalHandler={showHistoryModalHandler}/>}
 

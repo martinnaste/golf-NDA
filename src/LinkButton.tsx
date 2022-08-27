@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const LinkButton:FC<LinkButton> = (props) => {
 
-    console.log("HERE" + props.params)
+    // console.log("HERE" + props.params)
     return (
        
 
