@@ -1,12 +1,14 @@
 import { FC, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+
 import Button from '../Button'
 import LinkButton from '../LinkButton'
-import '../App.css'
-import './PlayGame.css'
 import PlayerRow from './PlayerRow'
 import NewPlayer from './NewPlayerModal'
 import Hole from '../Hole/Hole'
-import { Link } from 'react-router-dom'
+
+import '../App.css'
+import './PlayGame.css'
 
 export interface holeProps {
     holes: Hole[]
@@ -27,8 +29,6 @@ const PlayGame: FC = () => {
     const [playerTable, setPlayerTable]= useState<IPlayer[]>()
     const [playingTable, setPlayingTable]= useState<IPlayer[]>()
   
-    
-    var holeProps = [playingTable, 1]
     useEffect(() => {
         getAllPlayers()
     }, [])
@@ -99,18 +99,6 @@ const PlayGame: FC = () => {
         setPlayerTable(players);
     }
 
-    function addPlayer(){
-
-    }
-
-    function startGame() {
-        return( <div>
-            bruh
-            </div>)
-       
-    }
-    
-    
 
     function movePlayer(player: IPlayer, left: boolean) {
         var tempPlayerTable: IPlayer[]
@@ -153,6 +141,7 @@ const PlayGame: FC = () => {
 
 export interface IPlayer {
     Name: string
+    Score: number
 }
 
 export default PlayGame

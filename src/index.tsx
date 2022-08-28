@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import Dash from './Dashboard/Dash';
 import PlayGame from './PlayGame/PlayGame';
-// import Hole from './Hole/Hole';
+import Hole from './Hole/Hole';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);

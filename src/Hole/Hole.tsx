@@ -5,6 +5,7 @@ import '../App.css'
 import './Hole.css'
 import { Link, useLocation } from 'react-router-dom'
 import ScoreRow from './ScoreRow'
+import PlayerRow from '../PlayGame/PlayerRow'
 
 const pars = [2,2,3,2,3,3,5,3,6]
 
@@ -12,6 +13,8 @@ const Hole: FC = () => {
 
     const location: any = useLocation()
     const { holeProps } = location.state
+
+    const [gameTable, setGameTable] = useState(holeProps.playingTable)
 
     return (<div className='page'>
         <div style={{
@@ -37,20 +40,51 @@ const Hole: FC = () => {
                             <td>
                                 Score
                             </td>
+                            <td>
+                                total
+                            </td>
                         </tr>
-                        {holeProps.playingTable && <ScoreRow playerTable={holeProps.playingTable} />}
+                 
+                        {holeProps.playingTable.map((Player: { Name: string; Score: number }) => {
+                         
+                            return(  <ScoreRow Name={Player.Name} TotalScore={0} />)
+                          
+                        })}
                     </tbody>
                 </table>
             </div>
 
-            <Link className='button' to="/Hole" state={{ holeProps: { playingTable: holeProps.playingTable, number: holeProps.number + 1 } }}> Next Hole </Link>
+            {getNextHoleButton()}
         </div>
 
     </div>)
 
+    function validateScores(){
+        if(true){
 
+        }
+        return "/Hole"
+    }
+
+
+    function getNextHoleButton() {
+        if(holeProps.number < 9){
+            return(<Link className='button' onClick={updateGameTable} to={validateScores()} state={{ holeProps: { playingTable: holeProps.playingTable, number: holeProps.number + 1 } }}> Next Hole </Link> )
+        }
+        else{
+            return(<Link className='button' to={"/"} state={{ holeProps: { playingTable: holeProps.playingTable, number: holeProps.number + 1 } }}> End Game </Link> )
+        }
+
+            
+    
+    }
+
+    function updateGameTable(){
+        console.log(gameTable)
+    }
 
 }
 export default Hole;
+
 
 
