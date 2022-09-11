@@ -16,14 +16,13 @@ const Dash: FC = () => {
 
     // const {myThing} = useParams()
     // console.log(myThing)
-
-    // const location: any = useLocation()
-    // const { myThing } = location.state
     
-
     useEffect(() => {
-        getLatestLeaderboard()
+        getLatestLeaderboard();
     }, [])
+    
+    const location: any = useLocation();
+    const { loggedIn } = location.state;
 
     async function getLatestLeaderboard() {
         const response = await fetch(`http://localhost:5001/leaderboard/`);
@@ -88,9 +87,9 @@ const Dash: FC = () => {
             {/* Buttons */}
             <div style={{display: "flex",justifyContent: "center"}}>
                 <Button text="History" onClick={showHistoryModalHandler} />
-                {/* { myThing && */}
-                    <LinkButton text="Play" redirect={"../PlayGame"} />
-                {/* } */}
+                { loggedIn &&
+                    <LinkButton text="Play" redirect={"../PlayGame"} params={{state:{loggedIn: loggedIn}}}/>
+                }
                 {/* If Modal is visable (true) show it */}
                 {showHistoryModal && <HistoryModal showHistoryModalHandler={showHistoryModalHandler}/>}
 

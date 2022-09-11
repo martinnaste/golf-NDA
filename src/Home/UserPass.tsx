@@ -1,35 +1,45 @@
 import React, { FC, useState } from 'react'
-import Button from '../Button'
+import { useNavigate } from 'react-router-dom'
 
-const UserPass:FC<IUserPassProps> = (props) => {
+const UserPass:FC<IUserPassProps> = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [loginMessage, setLoginMessage] = useState("")
+    const navigate = useNavigate();
 
     const onUsernameChangeHandler = (event :any)=> {
-        //same thing you do now
         setUsername(event.target.value);
-        console.log("one behind here: ", username)
     }
 
     const onPasswordChangeHandler = (event :any)=> {
-        //same thing you do now
         setPassword(event.target.value);
-        console.log("one behind here: ", password)
     }
 
-    function onClickHandler() {
-        console.log("SUBMIT BUTTON CLICKED: ")
-        console.log("Not Behind: ", username, " ", password)
+    async function onClickHandler() {
+        const response = await fetch(`http://localhost:5001/login`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+            body: JSON.stringify({"Username" : username, "Password" : password})
+        });
+
+        let responseText = await response.json()
+        if(!response.ok){
+            setLoginMessage(responseText.Failed)
+        } else if(responseText.success){
+            navigate('/Dash', {state:{loggedIn: true}})
+        }
     }
 
     return (
         <>
+            {loginMessage && <h2 style={{"color":"orange",fontSize: "initial", margin: "0"}}>{loginMessage}</h2>}
             <input id='userpass' className='input' placeholder='USERNAME' onChange={onUsernameChangeHandler}></input>
             <input id='userpass' className='input' placeholder='PASSWORD' onChange={onPasswordChangeHandler}></input>
             <div className='login-text-container' onClick={()=>{onClickHandler()}}>
                 <h3 className='login-text'>Login</h3>
             </div>
-            {/* <Button text="Login" onClick={()=>{onClickHandler()}} /> */}
         </>
     )
 }

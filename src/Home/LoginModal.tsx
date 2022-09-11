@@ -10,12 +10,7 @@ const LoginModal:FC<ILoginProps> = (props) => {
             <div className='modal-content' onClick={e => e.stopPropagation()}>
                 <div className='modal-login'>
                     <div className='login'>
-                        {/* <input id='username' className='input' placeholder='USERNAME'></input>
-                        <input id='password' className='input' placeholder='PASSWORD'></input> */}
-                        <UserPass username={"test"}/>
-                        {/* <div className='login-text-container'>
-                            <h3 className='login-text'>Login</h3>
-                        </div> */}
+                        <UserPass/>
                     </div>
                 </div>
                 <hr className='login-hr'></hr>

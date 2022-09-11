@@ -1,13 +1,9 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import './LinkButton.css'
 import { Link } from "react-router-dom";
 
-const LinkButton:FC<LinkButton> = (props) => {
-
-    // console.log("HERE" + props.params)
+const LinkButton:FC<ILinkButtonProps> = (props) => {
     return (
-       
-
         <div className='linkButton'> 
             <Link  to={props.redirect} state={{from: props.params}}  >
                 {props.text}
@@ -16,7 +12,7 @@ const LinkButton:FC<LinkButton> = (props) => {
     )
 }
 
-export interface LinkButton{
+export interface ILinkButtonProps{
     text: string
     redirect: any
     params?: any

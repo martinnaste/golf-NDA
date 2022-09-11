@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import Button from '../Button'
 import LinkButton from '../LinkButton'
@@ -33,54 +33,75 @@ const PlayGame: FC = () => {
         getAllPlayers()
     }, [])
     
-
-    return (
-        <div className='page'>
-            <div style={{ position: "absolute" }}>
-                <LinkButton text='Back' redirect="../Dash" />
-            </div>
-
-            <div style={{ display: "flex", alignItems: "center", flexDirection: "column", paddingTop: "75px" }}>
-                <p style={{ fontSize: "42px" }}> New game! </p>
-                <p style={{ fontSize: "30px", width: "100%", textAlign: "center" }}>Select Players</p>
-
-                <div className='playerTableDiv'>
-
-                    <table className='playerTable' style={{ width: "90%", marginTop: "25px", marginLeft: '15px' }}>
-                        <tbody>
-                            <tr style={{ textAlign: "left", fontSize: "24px" }} >
-
-                                <td >
-                                    Players
-                                </td>
-                            </tr>
-                            {playerTable && <PlayerRow playerTable={playerTable} movePlayer={(e: any, l: any)=> movePlayer(e, l)} left={true}/>}
-                        </tbody>
-                    </table>
-
-                    <table className='playerTable' style={{ width: "90%", marginTop: "25px", marginRight: '15px' }}>
-                        <tbody>
-                            <tr style={{ textAlign: "left", fontSize: "24px" }}>
-                                <td>
-                                    Name
-                                </td>
-                            </tr>
-                            {playingTable && <PlayerRow playerTable={playingTable} movePlayer={(e: any, l: any)=> movePlayer(e, l)} left={false}/>}
-                        </tbody>
-                    </table>
-                </div>
-               
-               
-                
-                <div style={{display:'flex'}}>
-                     <Button text='New Player' onClick={() => {showNewPlayerModalHandler()}}></Button>
-                     {newPlayerModal && <NewPlayer allPlayers={allPlayers} showNewPlayerModal={showNewPlayerModalHandler} playerAdded={playerWasAdded}/>}
-                     <Link className='button' to="/Hole" state={{holeProps: {playingTable: playingTable, number: 1}}}> Play! </Link>
+    const location: any = useLocation();
+    const loggedIn = (() => {
+        if(location.state) {
+            return location.state.from.state.loggedIn
+        } else {
+            return null
+        }
+    })()
     
+    return (
+        <>
+        {loggedIn ?
+            <div className='page'>
+                <div style={{ position: "absolute" }}>
+                    <LinkButton text='Back' redirect="../Dash" params={{state:{loggedIn: loggedIn}}}/>
                 </div>
-               
+
+                <div style={{ display: "flex", alignItems: "center", flexDirection: "column", paddingTop: "75px" }}>
+                    <p style={{ fontSize: "42px" }}> New game! </p>
+                    <p style={{ fontSize: "30px", width: "100%", textAlign: "center" }}>Select Players</p>
+
+                    <div className='playerTableDiv'>
+
+                        <table className='playerTable' style={{ width: "90%", marginTop: "25px", marginLeft: '15px' }}>
+                            <tbody>
+                                <tr style={{ textAlign: "left", fontSize: "24px" }} >
+
+                                    <td >
+                                        Players
+                                    </td>
+                                </tr>
+                                {playerTable && <PlayerRow playerTable={playerTable} movePlayer={(e: any, l: any)=> movePlayer(e, l)} left={true}/>}
+                            </tbody>
+                        </table>
+
+                        <table className='playerTable' style={{ width: "90%", marginTop: "25px", marginRight: '15px' }}>
+                            <tbody>
+                                <tr style={{ textAlign: "left", fontSize: "24px" }}>
+                                    <td>
+                                        Name
+                                    </td>
+                                </tr>
+                                {playingTable && <PlayerRow playerTable={playingTable} movePlayer={(e: any, l: any)=> movePlayer(e, l)} left={false}/>}
+                            </tbody>
+                        </table>
+                    </div>
+                
+                
+                    
+                    <div style={{display:'flex'}}>
+                        <Button text='New Player' onClick={() => {showNewPlayerModalHandler()}}></Button>
+                        {newPlayerModal && <NewPlayer allPlayers={allPlayers} showNewPlayerModal={showNewPlayerModalHandler} playerAdded={playerWasAdded}/>}
+                        <Link className='button' to="/Hole" state={{holeProps: {playingTable: playingTable, number: 1}}}> Play! </Link>
+
+                    </div>
+                
+                </div>
             </div>
-        </div>
+            : 
+            <div className='page'>
+                <div style={{height: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                    <p style={{ fontSize: "30px", width: "100%", textAlign: "center" }}>Foolish of you to think you could do a shifty</p>
+                    <div >
+                        <LinkButton text='Home' redirect="/" />
+                    </div>   
+                </div>
+            </div>
+        }
+        </>
     )
 
     async function getAllPlayers() {

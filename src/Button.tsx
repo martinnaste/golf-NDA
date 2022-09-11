@@ -1,12 +1,11 @@
-import React, {FC, useState } from 'react'
+import React, {FC } from 'react'
 import './Button.css'
-import { Link } from "react-router-dom";
 
 
 const Button:FC<ButtonProps> = (props) => {
     return (
         <div> 
-            <p className='button' onClick={props.onClick}>
+            <p className='button' onClick={props.onClick} style={props.style}>
                 {props.text}
             </p>
         </div>
@@ -15,7 +14,8 @@ const Button:FC<ButtonProps> = (props) => {
 
 export interface ButtonProps{
     text: string
-    onClick: any 
+    onClick: any
+    style? : any
 }
 
 export default Button

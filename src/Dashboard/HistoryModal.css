@@ -28,11 +28,29 @@
 }
 
 .history-item-container{
-    display: flex;
-    height: 32px;
-    margin-bottom: 10px;
-    padding: 12px;
+    width: 100%;
     text-align: center;
+    margin: 4px;
+}
+
+.history-table {
+    background: none;
+    height: 100%;
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.history-tbody {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.history-item{
+    padding: 8px;
     background: rgba(12, 17, 22, 0.644);
-    border-radius: 5px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
 }

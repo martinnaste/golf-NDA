@@ -18,7 +18,8 @@ const HomeButtons = () => {
             </h4>
             |
             <h4 className='button' >
-                <Link to="/Dash" state={{myThing: "test"}}> GUEST </Link>
+                {/* THIS GOTTA GET CHANGED */}
+                <Link to="/Dash" state={{loggedIn: true}}> GUEST </Link>
                 {/* <Link to="/Dash" state={{myThing: "yeehaw"}}> GUEST </Link> */}
             </h4>
             {showLoginModal && <LoginModal showLoginModalHandler={showLoginModalHandler}/>}
