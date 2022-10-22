@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './HomeButtons.css'
 import LoginModal from './LoginModal';
-import { Link } from "react-router-dom";
+import LinkButton from '../LinkButton';
 
 
 const HomeButtons = () => {
@@ -17,11 +17,9 @@ const HomeButtons = () => {
                 LOGIN
             </h4>
             |
-            <h4 className='button' >
-                {/* THIS GOTTA GET CHANGED */}
-                <Link to="/Dash" state={{loggedIn: true}}> GUEST </Link>
-                {/* <Link to="/Dash" state={{myThing: "yeehaw"}}> GUEST </Link> */}
-            </h4>
+            <div >
+                <LinkButton text='Guest' redirect={"/Dash"} params={{state:{loggedIn: false}}}/>
+            </div>
             {showLoginModal && <LoginModal showLoginModalHandler={showLoginModalHandler}/>}
         </div>
     )

@@ -12,8 +12,21 @@ const pars = [2,2,3,2,3,3,5,3,6]
 const Hole: FC = () => {
 
     const location: any = useLocation()
-    const { holeProps } = location.state
-    
+    // const { holeProps } = location.state
+    const loggedIn = (() => {
+        if(typeof location.state?.loggedIn === 'boolean'){
+            return location.state?.loggedIn
+        } else if(typeof location.state?.from === 'object'){
+            return location.state?.from.state.loggedIn
+        }
+    })()
+    const holeProps = (() => {
+        if(typeof location.state?.loggedIn === 'boolean'){
+            return location.state?.holeProps
+        } else if(typeof location.state?.from === 'object'){
+            return location.state?.from.state.holeProps
+        }
+    })()    
 
     let rows: any[] = [];
     const [gameTables, setGameTables] = useState([holeProps.playingTable])

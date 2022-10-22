@@ -1,22 +1,21 @@
 import { FC, useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import Button from '../Button'
 import LinkButton from '../LinkButton'
 import PlayerRow from './PlayerRow'
 import NewPlayer from './NewPlayerModal'
-import Hole from '../Hole/Hole'
 
 import '../App.css'
 import './PlayGame.css'
 
-export interface holeProps {
-    holes: Hole[]
-}
-export interface Hole {
-    holeNumber: number,
-    holeScores: ScoreTable
-}
+// export interface holeProps {
+//     holes: Hole[]
+// }
+// export interface Hole {
+//     holeNumber: number,
+//     holeScores: ScoreTable
+// }
 export interface ScoreTable {
     playerName: string,
     score: number
@@ -35,13 +34,13 @@ const PlayGame: FC = () => {
     
     const location: any = useLocation();
     const loggedIn = (() => {
-        if(location.state) {
-            return location.state.from.state.loggedIn
-        } else {
-            return null
+        if(typeof location.state?.loggedIn === 'boolean'){
+            return location.state?.loggedIn
+        } else if(typeof location.state?.from === 'object'){
+            return location.state?.from.state.loggedIn
         }
     })()
-    
+
     return (
         <>
         {loggedIn ?
@@ -79,16 +78,17 @@ const PlayGame: FC = () => {
                             </tbody>
                         </table>
                     </div>
-                
-                
-                    
                     <div style={{display:'flex'}}>
                         <Button text='New Player' onClick={() => {showNewPlayerModalHandler()}}></Button>
                         {newPlayerModal && <NewPlayer allPlayers={allPlayers} showNewPlayerModal={showNewPlayerModalHandler} playerAdded={playerWasAdded}/>}
-                        <Link className='button' to="/Hole" state={{holeProps: {playingTable: playingTable, number: 1}}}> Play! </Link>
-
+                        {
+                            playingTable && playingTable.length > 0 ?
+                            <LinkButton text="Play!" redirect="/Hole" params={{state:{holeProps: {playingTable: playingTable, number: 1}, loggedIn: loggedIn}}}/>
+                            :
+                            <LinkButton text="Play!" redirect="/PlayGame" params={{state:{loggedIn: loggedIn}}}/>
+                        }
+                        {/* <Link className='button' to="/Hole" state={{holeProps: {playingTable: playingTable, number: 1}}}> Play! </Link> */}
                     </div>
-                
                 </div>
             </div>
             : 

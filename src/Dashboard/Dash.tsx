@@ -6,7 +6,7 @@ import Button from '../Button'
 import LinkButton  from '../LinkButton'
 import HistoryModal from './HistoryModal'
 import PreviousGame from './PreviousGame'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 const Dash: FC = () => {
     const [latestGame, setLatestGame] = useState<ILatestLeaderboardObj>()
@@ -14,15 +14,20 @@ const Dash: FC = () => {
     const [latestGameSimple, setLatestGameSimple] = useState<ILatestLeaderboardSimpleObj>()
     const [latestGameDate, setLatestGameDate] = useState('')
 
-    // const {myThing} = useParams()
-    // console.log(myThing)
+    // console.log(localStorage.getItem("token"))
     
     useEffect(() => {
         getLatestLeaderboard();
     }, [])
     
     const location: any = useLocation();
-    const { loggedIn } = location.state;
+    const loggedIn = (() => {
+        if(typeof location.state?.loggedIn === 'boolean'){
+            return location.state?.loggedIn
+        } else if(typeof location.state?.from === 'object'){
+            return location.state?.from.state.loggedIn
+        }
+    })()
 
     async function getLatestLeaderboard() {
         const response = await fetch(`http://localhost:5001/leaderboard/`);

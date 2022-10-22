@@ -8,8 +8,10 @@ const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
     const [tempPlayerName, setTempPlayerName] = useState('');
     const [successSubmit, setSuccessSubmit] = useState(false);
     const [nameExists, setNameExists] = useState(false);
+    const [emptyName, setEmptyName] = useState(false);
+    const [addedPlayersList, setAddedPlayersList] = useState([''])
 
-    function onSubmit(){
+    async function onSubmit(){
         setTempPlayerName(playerName)
         const isMatch = props.allPlayers?.some((player) => {
             if(player.Name.toLowerCase() === playerName.toLowerCase()){
@@ -18,15 +20,69 @@ const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
                 return false
             }
         })
-        if(!isMatch){
-            setNameExists(false)
-            //Push New Player to db
+        const isEmpty = (() => {
+            if(playerName.length === 0){
+                return true;
+            } else {
+                return false;
+            }
+        })()
 
-            //Do these if successful
-            setSuccessSubmit(true)
-            props.playerAdded()
+        if(isEmpty) {
+            setEmptyName(true)
+            setNameExists(false)
+        } else {
+            setEmptyName(false)
+        }
+
+        const exists = addedPlayersList.some((name) => {
+            if(name === playerName.toLowerCase()){
+                return true;
+            } else {
+                return false;
+            }
+        })
+
+        if(!isMatch && !isEmpty && !exists){
+            setNameExists(false)
+            //Auth
+            const authed = await fetch(`http://localhost:5001/isUserAuth/`, {
+                method: "GET",
+                headers: {
+                    "x-access-token": localStorage.getItem("token") || ''
+                },
+            }).then(async (response) => {
+                return await response.json();
+            }).catch((err) => {
+                var message = `There was an error with your authentication: ${err}`
+                alert(message);
+            });
+
+            if(authed.authed) {
+                //Push player to database
+                await fetch("http://localhost:5001/players/add", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({Name: playerName})
+                }).then((response) => {
+                    if(response.ok){
+                        //Do these if successful
+                        setSuccessSubmit(true)
+                        props.playerAdded()
+                        var tempAddedPlayersList = addedPlayersList
+                        tempAddedPlayersList.push(playerName)
+                        setAddedPlayersList(tempAddedPlayersList)
+                    }
+                }).catch(error => {
+                    window.alert(error);
+                    return;
+                });
+            }
         } else if(isMatch) {
             setNameExists(true)
+            setEmptyName(false)
             setSuccessSubmit(false)
         }
     }
@@ -51,6 +107,7 @@ const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
             <Button text='Submit' onClick={() => {onSubmit()}}/>
             <br></br>
             {nameExists && <h2 style={{"color":"orange"}}>Name already exists, enter a different name</h2>}
+            {emptyName && <h2 style={{"color":"orange"}}>Empty names not accepted</h2>}
             {successSubmit && <h2 style={{"color":"green"}}>Successfully submitted new player: {tempPlayerName}</h2>}
         </div>
     )
