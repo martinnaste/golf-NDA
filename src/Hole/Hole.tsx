@@ -3,6 +3,7 @@ import Button from '../Button'
 import LinkButton from '../LinkButton'
 import '../App.css'
 import './Hole.css'
+import '../Button.css'
 import { Link, useLocation } from 'react-router-dom'
 import ScoreRow from './ScoreRow'
 import PlayerRow from '../PlayGame/PlayerRow'
@@ -29,7 +30,10 @@ const Hole: FC = () => {
         }
     })()    
 
+    
     let rows: any[] = [];
+    const [holeNumber, setHoleNumber] = useState(1);
+
     console.log(holeProps)
     const playingTableArray = (() => {
         const nineHoles = []
@@ -51,12 +55,12 @@ const Hole: FC = () => {
             alignItems: 'flex-end'
         }} >
 
-            <p className='title'>Hole Number: {holeProps.number+1} </p>
-            <p className='title'>Par: {pars[holeProps.number]} </p>
+            <p className='title'>Hole Number: {holeNumber} </p>
+            <p className='title'>Par: {pars[holeNumber-1]} </p>
 
      
            
-            <img src={require(('../Images/' + (holeProps.number+1) +  '.png')) } className="holeImg" />
+            <img src={require(('../Images/' + holeNumber +  '.png')) } className="holeImg" />
 
             <div className='playerTableDiv'>
 
@@ -77,7 +81,6 @@ const Hole: FC = () => {
                  
                         {playingTable.map((Player: { Name: string; Score: number }) => {
                             rows.push(<ScoreRow Name={Player.Name} TotalScore={0} />)
-                           // return(  <ScoreRow Name={Player.Name} TotalScore={0} />)
                             
                           
                         })}
@@ -102,7 +105,15 @@ const Hole: FC = () => {
     function getNextHoleButton() {
         if(holeProps.number < 9){
             updateScores()
-            return(<Link className='button' to={'/Hole'} state={{ holeProps: { playingTable: updateGameTable(), number: holeProps.number + 1 } }}> Next Hole </Link> )
+            return(
+                    <div style={{display:"flex",
+                    width: '100%',
+                    justifyContent: 'space-between',flexDirection: "row-reverse"}}>
+                         <div className='button' onClick={()=>{setHoleNumber(holeNumber+1)}}> Next Hole </div>
+                         {holeNumber>1 && <div className='button' onClick={()=>{setHoleNumber(holeNumber-1)}}> Back </div>}
+
+                    </div>
+                 )
         }
         else{
             return(<Link className='button' to={"/"} state={{ holeProps: { playingTable: holeProps.playingTable, number: holeProps.number + 1 } }}> End Game </Link> )

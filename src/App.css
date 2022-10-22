@@ -15,6 +15,9 @@
 
   height: 87vh;
   animation: textShadow 1.9s infinite;
+
+  font-family: 'ThaLeah';
+  src: url('ThaleahFat.ttf') format("truetype")
 }
 
 @keyframes flicker {
