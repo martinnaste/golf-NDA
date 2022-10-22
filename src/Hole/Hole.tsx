@@ -13,8 +13,11 @@ const Hole: FC = () => {
 
     const location: any = useLocation()
     const { holeProps } = location.state
+    
 
-    const [gameTable, setGameTable] = useState(holeProps.playingTable)
+    let rows: any[] = [];
+    const [gameTables, setGameTables] = useState([holeProps.playingTable])
+    const playingTable = gameTables[holeProps.number-1]
 
     return (<div className='page'>
         <div style={{
@@ -25,8 +28,10 @@ const Hole: FC = () => {
 
             <p className='title'>Hole Number: {holeProps.number} </p>
             <p className='title'>Par: {pars[holeProps.number-1]} </p>
-    
-            <img src={require('../Images/hole1.png')} className="holeImg" />
+
+     
+           
+            <img src={require(('../Images/' + holeProps.number +  '.png')) } className="holeImg" />
 
             <div className='playerTableDiv'>
 
@@ -45,11 +50,14 @@ const Hole: FC = () => {
                             </td>
                         </tr>
                  
-                        {holeProps.playingTable.map((Player: { Name: string; Score: number }) => {
-                         
-                            return(  <ScoreRow Name={Player.Name} TotalScore={0} />)
+                        {playingTable.map((Player: { Name: string; Score: number }) => {
+                            rows.push(<ScoreRow Name={Player.Name} TotalScore={0} />)
+                           // return(  <ScoreRow Name={Player.Name} TotalScore={0} />)
+                            
                           
                         })}
+
+                        {rows}
                     </tbody>
                 </table>
             </div>
@@ -59,17 +67,17 @@ const Hole: FC = () => {
 
     </div>)
 
-    function validateScores(){
-        if(true){
-
-        }
-        return "/Hole"
+    function updateScores(){
+        playingTable.forEach((player: { Score: number }, index) => {
+            player.Score = rows[index].score
+        })
     }
-
+ 
 
     function getNextHoleButton() {
         if(holeProps.number < 9){
-            return(<Link className='button' onClick={updateGameTable} to={validateScores()} state={{ holeProps: { playingTable: holeProps.playingTable, number: holeProps.number + 1 } }}> Next Hole </Link> )
+            updateScores()
+            return(<Link className='button' to={'/Hole'} state={{ holeProps: { playingTable: updateGameTable(), number: holeProps.number + 1 } }}> Next Hole </Link> )
         }
         else{
             return(<Link className='button' to={"/"} state={{ holeProps: { playingTable: holeProps.playingTable, number: holeProps.number + 1 } }}> End Game </Link> )
@@ -80,7 +88,11 @@ const Hole: FC = () => {
     }
 
     function updateGameTable(){
-        console.log(gameTable)
+        console.log(gameTables)
+     
+        //append playingTable to state
+        //setGameTables(newTables)
+        return(gameTables.push(playingTable))
     }
 
 }

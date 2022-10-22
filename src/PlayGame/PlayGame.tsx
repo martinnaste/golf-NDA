@@ -28,7 +28,7 @@ const PlayGame: FC = () => {
     const [allPlayers, setAllPlayers]= useState<IPlayer[]>()
     const [playerTable, setPlayerTable]= useState<IPlayer[]>()
     const [playingTable, setPlayingTable]= useState<IPlayer[]>()
-  
+    var  playingTables = [playingTable] //Empty array for the 9 holes
     useEffect(() => {
         getAllPlayers()
     }, [])
@@ -115,6 +115,9 @@ const PlayGame: FC = () => {
     
         const players: IPlayer[] = await response.json();
         players.sort((a: any, b: any) => a.Name - b.Name)
+        players.forEach(player =>{
+            player.Score = 0;
+        });
         console.log(players)
         setAllPlayers(players);
         setPlayerTable(players);

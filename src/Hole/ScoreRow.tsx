@@ -1,57 +1,76 @@
 import React, { FC, useRef, useState } from 'react'
 import { IPlayer } from '../PlayGame/PlayGame';
 
-const ScoreRow: FC<IScoreRowProps> = (props) => {
+type rowProps = {
+    Name: string;
+    TotalScore: number;
+}
 
-    const [score, setScore] = useState(0)
+type rowState = {
+    score: number
+}
+export class ScoreRow extends React.Component<rowProps, rowState>  {
 
+    //const [score, setScore] = useState(0)
 
-    return (
+    constructor(props: any) {
+        super(props);
+        this.state = { score: 0};
+        let ref = React.createRef() 
+    }
 
-        
-            <tr key={props.Name}>
+    render() {
+
+        return (
+            
+            <tr key={this.props.Name}>
 
                 <td >
-                    {props.Name}
+                    {this.props.Name}
                 </td>
 
                 <td >
-                 
+
                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <div onClick={decereaseScore} >-</div>
-                        <div style={{ padding: '0 5px 0 5px' }}>{score}</div>
-                        <div onClick={(incrementScore)}>+</div>
+                        <div onClick={this.decereaseScore.bind(this)} >-</div>
+                        <div style={{ padding: '0 5px 0 5px' }}>{this.state.score}</div>
+                        <div onClick={(this.incrementScore.bind(this))}>+</div>
                     </div>
 
                 </td>
                 <td>
-                {props.TotalScore}
+                    {this.props.TotalScore}
 
                 </td>
 
             </tr>
+            
+            )
 
-       
 
-    );
-    
-function incrementScore() {
 
-    if (score < 10) {
-        setScore(score + 1)
+    };
+
+  
+    incrementScore() {
+        
+        if (this.state.score < 10) {
+            this.setState({ score: this.state.score + 1});
+
+        }
+
+
     }
 
+    decereaseScore() {
 
-}
+        if (this.state.score > 0) {
+            this.setState({ score: this.state.score - 1 });
 
-function decereaseScore() {
+        }
 
-    if (score > 0) {
-        setScore(score - 1)
+
     }
-
-
-}
 
 
 }
@@ -59,6 +78,7 @@ function decereaseScore() {
 export interface IScoreRowProps {
     Name: string
     TotalScore: number
+
 
 }
 
