@@ -27,7 +27,6 @@ const PlayGame: FC = () => {
     const [allPlayers, setAllPlayers]= useState<IPlayer[]>()
     const [playerTable, setPlayerTable]= useState<IPlayer[]>()
     const [playingTable, setPlayingTable]= useState<IPlayer[]>()
-    var  playingTables = [playingTable] //Empty array for the 9 holes
     useEffect(() => {
         getAllPlayers()
     }, [])
@@ -83,7 +82,7 @@ const PlayGame: FC = () => {
                         {newPlayerModal && <NewPlayer allPlayers={allPlayers} showNewPlayerModal={showNewPlayerModalHandler} playerAdded={playerWasAdded}/>}
                         {
                             playingTable && playingTable.length > 0 ?
-                            <LinkButton text="Play!" redirect="/Hole" params={{state:{holeProps: {playingTable: playingTable, number: 1}, loggedIn: loggedIn}}}/>
+                            <LinkButton text="Play!" redirect="/Hole" params={{state:{holeProps: {playingTable: playingTable, number: 0}, loggedIn: loggedIn}}}/>
                             :
                             <LinkButton text="Play!" redirect="/PlayGame" params={{state:{loggedIn: loggedIn}}}/>
                         }

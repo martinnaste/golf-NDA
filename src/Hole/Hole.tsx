@@ -6,6 +6,7 @@ import './Hole.css'
 import { Link, useLocation } from 'react-router-dom'
 import ScoreRow from './ScoreRow'
 import PlayerRow from '../PlayGame/PlayerRow'
+import { IPlayer } from '../PlayGame/PlayGame'
 
 const pars = [2,2,3,2,3,3,5,3,6]
 
@@ -29,8 +30,19 @@ const Hole: FC = () => {
     })()    
 
     let rows: any[] = [];
+    console.log(holeProps)
+    const playingTableArray = (() => {
+        const nineHoles = []
+        holeProps.playingTable.forEach((item: IPlayer) => {
+            item.Score = 0
+        })
+        for(let i = 0; i < 9; i++){
+            nineHoles.push(holeProps.playingTable)
+        }
+        return nineHoles
+    })()
     const [gameTables, setGameTables] = useState([holeProps.playingTable])
-    const playingTable = gameTables[holeProps.number-1]
+    const playingTable = gameTables[holeProps.number]
 
     return (<div className='page'>
         <div style={{
@@ -39,12 +51,12 @@ const Hole: FC = () => {
             alignItems: 'flex-end'
         }} >
 
-            <p className='title'>Hole Number: {holeProps.number} </p>
-            <p className='title'>Par: {pars[holeProps.number-1]} </p>
+            <p className='title'>Hole Number: {holeProps.number+1} </p>
+            <p className='title'>Par: {pars[holeProps.number]} </p>
 
      
            
-            <img src={require(('../Images/' + holeProps.number +  '.png')) } className="holeImg" />
+            <img src={require(('../Images/' + (holeProps.number+1) +  '.png')) } className="holeImg" />
 
             <div className='playerTableDiv'>
 
@@ -81,7 +93,7 @@ const Hole: FC = () => {
     </div>)
 
     function updateScores(){
-        playingTable.forEach((player: { Score: number }, index) => {
+        playingTable.forEach((player: { Score: number }, index: number) => {
             player.Score = rows[index].score
         })
     }
@@ -109,6 +121,7 @@ const Hole: FC = () => {
     }
 
 }
+
 export default Hole;
 
 
