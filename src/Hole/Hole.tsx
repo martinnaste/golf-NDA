@@ -1,20 +1,14 @@
-import { FC, useEffect, useState } from 'react'
-import Button from '../Button'
+import { FC } from 'react'
 import LinkButton from '../LinkButton'
 import '../App.css'
 import './Hole.css'
 import '../Button.css'
-import { Link, useLocation } from 'react-router-dom'
-import ScoreRow from './ScoreRow'
-import PlayerRow from '../PlayGame/PlayerRow'
+import { useLocation } from 'react-router-dom'
 import { IPlayer } from '../PlayGame/PlayGame'
-
-const pars = [2,2,3,2,3,3,5,3,6]
+import HolePage from './HolePage'
 
 const Hole: FC = () => {
-
     const location: any = useLocation()
-    // const { holeProps } = location.state
     const loggedIn = (() => {
         if(typeof location.state?.loggedIn === 'boolean'){
             return location.state?.loggedIn
@@ -30,107 +24,35 @@ const Hole: FC = () => {
         }
     })()    
 
-    
-    let rows: any[] = [];
-    const [holeNumber, setHoleNumber] = useState(1);
-
-    console.log(holeProps)
+    console.log(loggedIn)
+    const holeNumber = holeProps.number
     const playingTableArray = (() => {
-        const nineHoles = []
+        var nineHoles: any[] = []
         holeProps.playingTable.forEach((item: IPlayer) => {
             item.Score = 0
         })
         for(let i = 0; i < 9; i++){
-            nineHoles.push(holeProps.playingTable)
+            nineHoles[i] = JSON.parse(JSON.stringify(holeProps.playingTable))
         }
         return nineHoles
     })()
-    const [gameTables, setGameTables] = useState([holeProps.playingTable])
-    const playingTable = gameTables[holeProps.number]
 
-    return (<div className='page'>
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-end'
-        }} >
-
-            <p className='title'>Hole Number: {holeNumber} </p>
-            <p className='title'>Par: {pars[holeNumber-1]} </p>
-
-     
-           
-            <img src={require(('../Images/' + holeNumber +  '.png')) } className="holeImg" />
-
-            <div className='playerTableDiv'>
-
-                <table className='playerTable' style={{ width: "90%" }}>
-                    <tbody>
-                        <tr style={{ textAlign: "left", fontSize: "24px" }} >
-
-                            <td >
-                                Players
-                            </td>
-                            <td>
-                                Score
-                            </td>
-                            <td>
-                                total
-                            </td>
-                        </tr>
-                 
-                        {playingTable.map((Player: { Name: string; Score: number }) => {
-                            rows.push(<ScoreRow Name={Player.Name} TotalScore={0} />)
-                            
-                          
-                        })}
-
-                        {rows}
-                    </tbody>
-                </table>
-            </div>
-
-            {getNextHoleButton()}
-        </div>
-
-    </div>)
-
-    function updateScores(){
-        playingTable.forEach((player: { Score: number }, index: number) => {
-            player.Score = rows[index].score
-        })
-    }
- 
-
-    function getNextHoleButton() {
-        if(holeProps.number < 9){
-            updateScores()
-            return(
-                    <div style={{display:"flex",
-                    width: '100%',
-                    justifyContent: 'space-between',flexDirection: "row-reverse"}}>
-                         <div className='button' onClick={()=>{setHoleNumber(holeNumber+1)}}> Next Hole </div>
-                         {holeNumber>1 && <div className='button' onClick={()=>{setHoleNumber(holeNumber-1)}}> Back </div>}
-
+    return (
+        <>
+            {loggedIn ? 
+                <HolePage playingTableArray={playingTableArray as [IPlayer[]]} hole={holeNumber}/>
+                :
+                <div className='page'>
+                    <div style={{height: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                        <p style={{ fontSize: "30px", width: "100%", textAlign: "center" }}>Foolish of you to think you could do a shifty</p>
+                        <div >
+                            <LinkButton text='Home' redirect="/" />
+                        </div>   
                     </div>
-                 )
-        }
-        else{
-            return(<Link className='button' to={"/"} state={{ holeProps: { playingTable: holeProps.playingTable, number: holeProps.number + 1 } }}> End Game </Link> )
-        }
-
-            
-    
-    }
-
-    function updateGameTable(){
-        console.log(gameTables)
-     
-        //append playingTable to state
-        //setGameTables(newTables)
-        return(gameTables.push(playingTable))
-    }
-
+                </div>
+            }
+        </>
+    )
 }
 
 export default Hole;
