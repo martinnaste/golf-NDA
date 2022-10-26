@@ -6,6 +6,7 @@ import '../Button.css'
 import { useLocation } from 'react-router-dom'
 import { IPlayer } from '../PlayGame/PlayGame'
 import HolePage from './HolePage'
+import EndGame from './EndGame/EndGame'
 
 const Hole: FC = () => {
     const location: any = useLocation()
@@ -24,8 +25,10 @@ const Hole: FC = () => {
         }
     })()    
 
-    console.log(loggedIn)
+    
     const holeNumber = holeProps.number
+    //Generates 9 copies of the playerTable Array to keep track of each turn
+    //Deep copy!!!!
     const playingTableArray = (() => {
         var nineHoles: any[] = []
         holeProps.playingTable.forEach((item: IPlayer) => {
@@ -37,10 +40,12 @@ const Hole: FC = () => {
         return nineHoles
     })()
 
+
+    //If logged in generate a holePage (Player table and image)
     return (
         <>
             {loggedIn ? 
-                <HolePage playingTableArray={playingTableArray as [IPlayer[]]} hole={holeNumber}/>
+                <HolePage playingTableArray={playingTableArray as [IPlayer[]]} hole={holeNumber}/>                        
                 :
                 <div className='page'>
                     <div style={{height: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
@@ -53,6 +58,8 @@ const Hole: FC = () => {
             }
         </>
     )
+
+
 }
 
 export default Hole;

@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
+import LinkButton from '../LinkButton'
 import { IPlayer } from "../PlayGame/PlayGame"
 import ScoreRows from './ScoreRows'
 
@@ -76,19 +77,15 @@ const HolePage:FC<IHolePageProps> = (props) => {
     ) 
 
     function getNextHoleButton() {
-        if(holeNumber < 9){
             return(
-                <div 
-                    style={{
-                        display:"flex",
-                        width: '100%',
-                        justifyContent: 'space-between',
-                        flexDirection: "row-reverse"
-                    }}
-                >
-                    <div className='button' onClick={()=>{setHoleNumber(holeNumber+1)}}>
+                <div  style={{display:"flex",width: '100%',justifyContent: 'space-between', flexDirection: "row-reverse"}}>
+                    {holeNumber + 1 < 9 ?
+                      <div className='button' onClick={()=>{setHoleNumber(holeNumber+1)}}>
                         Next Hole 
-                    </div>
+                      </div>
+                    :
+                    <LinkButton text='End Game...' redirect={'/EndGame'}  params={{state:{holeProps: {playingTable: playingTableArray, number: 0}}}}/>
+                    }
                     {holeNumber > 0 && 
                         <div className='button' onClick={()=>{setHoleNumber(holeNumber-1)}}>
                             Back
@@ -96,14 +93,9 @@ const HolePage:FC<IHolePageProps> = (props) => {
                     }
                 </div>
             )
-        } else{
-            return(<Link className='button' to={"/"} state={{ holeProps: { playingTable: props.playingTableArray, number: holeNumber + 1 } }}> End Game </Link> )
-        }
-
-            
-    
+        }    
     }
-}
+
 
 export interface IHolePageProps {
     playingTableArray: [IPlayer[]]

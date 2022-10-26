@@ -5,6 +5,7 @@ import App from './App';
 import Dash from './Dashboard/Dash';
 import PlayGame from './PlayGame/PlayGame';
 import Hole from './Hole/Hole';
+import EndGame from './Hole/EndGame/EndGame';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
@@ -17,6 +18,7 @@ root.render(
             <Route path="Dash" element={<Dash />} />
             <Route path="PlayGame" element={<PlayGame />} />
             <Route path="Hole" element={<Hole/>} />
+            <Route path="EndGame" element={<EndGame/>} />
         </Routes>
     </Router>
 );

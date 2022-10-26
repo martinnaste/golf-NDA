@@ -1,10 +1,9 @@
 import { FC, useEffect, useState } from 'react'
-import '../App.css'
-import '../Button.css'
+import '../../App.css'
+import '../../Button.css'
 import './EndGame.css'
 import './Podium.css'
 
-import { IPlayer } from '../PlayGame/PlayGame'
 
 
 const Poduim: FC<props> = (props) => {
@@ -13,15 +12,15 @@ const Poduim: FC<props> = (props) => {
     return (<div style={{display:"flex", margin:"15px"}}> 
                 
                     <div className="podium">
-                        <div className='second'></div>
+                        <img className='player' src={require('../../Images/character.png') }/>
                         <div className='secondPodium'>2</div>
                     </div>
                     <div className="podium">
-                        <div className='first'></div>
+                        <img className='player' src={require('../../Images/character.png') }/>
                         <div className='firstPodium'>1</div>
                     </div>                    
                     <div className="podium">
-                        <div className='third'></div>
+                        <img className='player' src={require('../../Images/character.png') }/>
                         <div className='thirdPodium'>3</div>
                     </div>
                     

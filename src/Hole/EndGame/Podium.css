@@ -1,20 +1,9 @@
-.first{
-    background-color: red;
-    width: 25px;
-    height: 40px;
+.player{
+    width: 30px;
+    height: 75px;
+    margin-bottom: -3px;
 }
 
-.second{
-    background-color: red;
-    width: 25px;
-    height: 40px;
-}
-
-.third{
-    background-color: rgb(0, 0, 0);
-    width: 25px;
-    height: 40px;
-}
 
 .firstPodium{
     text-align: center;

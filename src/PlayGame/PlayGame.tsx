@@ -86,7 +86,6 @@ const PlayGame: FC = () => {
                             :
                             <LinkButton text="Play!" redirect="/PlayGame" params={{state:{loggedIn: loggedIn}}}/>
                         }
-                        {/* <Link className='button' to="/Hole" state={{holeProps: {playingTable: playingTable, number: 1}}}> Play! </Link> */}
                     </div>
                 </div>
             </div>

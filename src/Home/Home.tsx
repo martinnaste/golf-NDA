@@ -113,13 +113,14 @@ const Home:FC = () => {
     return (
         <div className='home-container' >
             <div className='home'>
+               <div><img className='logo' src={require('../Images/logo.png') }/></div> 
                 HYPNOS MOORE RIVER GOLF
                 <HomeButtons />
-                <button onClick={() => addHandler()}>add to db</button>
+                {/* <button onClick={() => addHandler()}>add to db</button>
                 <button onClick={() => getAllLeaderboards()}>get All Leaderboards</button>
                 {allLeaderboards !== [dummyLeaderboard] && returnAllLeaderboards()}
                 <button onClick={() => getAllPlayers()}>get All Players</button>
-                <button onClick={() => addNewPlayer()}>add new player</button>
+                <button onClick={() => addNewPlayer()}>add new player</button> */}
             </div>
         </div>
     )
