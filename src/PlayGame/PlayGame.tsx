@@ -110,7 +110,6 @@ const PlayGame: FC = () => {
         players.forEach(player =>{
             player.Score = 0;
         });
-        // console.log(players)
         setAllPlayers(players);
         setPlayerTable(players);
     }

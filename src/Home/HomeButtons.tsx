@@ -3,7 +3,6 @@ import './HomeButtons.css'
 import LoginModal from './LoginModal';
 import LinkButton from '../LinkButton';
 
-
 const HomeButtons = () => {
     const [showLoginModal, setShowLoginModal] = useState(false);
 

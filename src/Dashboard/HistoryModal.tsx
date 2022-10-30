@@ -23,7 +23,6 @@ const LoginModal: FC<IHistoryProps> = (props) => {
         }
     
         const records = await response.json();
-        // console.log(records)
         for(let i = 0; i < records.length; i++){
             records[i].Players.sort((a: any, b: any) => a.Score - b.Score)
         }
