@@ -14,8 +14,6 @@ const LoginModal:FC<ILoginProps> = (props) => {
                     </div>
                 </div>
                 <hr className='login-hr'></hr>
-                {/* f5861e */}
-                {/* <h3 className='connect' >Connect Wallet</h3> */}
                 <Connect />
             </div>
         </div>

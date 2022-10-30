@@ -9,13 +9,6 @@ import NewPlayer from './NewPlayerModal'
 import '../App.css'
 import './PlayGame.css'
 
-// export interface holeProps {
-//     holes: Hole[]
-// }
-// export interface Hole {
-//     holeNumber: number,
-//     holeScores: ScoreTable
-// }
 export interface ScoreTable {
     playerName: string,
     score: number
@@ -27,6 +20,7 @@ const PlayGame: FC = () => {
     const [allPlayers, setAllPlayers]= useState<IPlayer[]>()
     const [playerTable, setPlayerTable]= useState<IPlayer[]>()
     const [playingTable, setPlayingTable]= useState<IPlayer[]>()
+
     useEffect(() => {
         getAllPlayers()
     }, [])
@@ -57,11 +51,11 @@ const PlayGame: FC = () => {
                         <table className='playerTable' style={{ width: "90%", marginTop: "25px", marginLeft: '15px' }}>
                             <tbody>
                                 <tr style={{ textAlign: "left", fontSize: "24px" }} >
-
                                     <td >
                                         Players
                                     </td>
                                 </tr>
+
                                 {playerTable && <PlayerRow playerTable={playerTable} movePlayer={(e: any, l: any)=> movePlayer(e, l)} left={true}/>}
                             </tbody>
                         </table>
@@ -116,7 +110,7 @@ const PlayGame: FC = () => {
         players.forEach(player =>{
             player.Score = 0;
         });
-        console.log(players)
+        // console.log(players)
         setAllPlayers(players);
         setPlayerTable(players);
     }

@@ -9,12 +9,9 @@ import PreviousGame from './PreviousGame'
 import { useLocation } from 'react-router-dom'
 
 const Dash: FC = () => {
-    const [latestGame, setLatestGame] = useState<ILatestLeaderboardObj>()
     const [showHistoryModal, setShowHistoryModal] = useState(false);
     const [latestGameSimple, setLatestGameSimple] = useState<ILatestLeaderboardSimpleObj>()
     const [latestGameDate, setLatestGameDate] = useState('')
-
-    // console.log(localStorage.getItem("token"))
     
     useEffect(() => {
         getLatestLeaderboard();
@@ -39,10 +36,8 @@ const Dash: FC = () => {
         }
     
         const records = await response.json();
-        setLatestGame(records[0]);
         var date = new Date(records[0].dateTime).toDateString()
         setLatestGameDate(date)
-        console.log(records)
         var sortedPlayers = records[0].Players.sort((a: any, b: any) => a.Score - b.Score)
         var filtered: ISimplePlayersObj[] = []
         sortedPlayers.forEach((player: any) => {

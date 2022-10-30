@@ -113,7 +113,7 @@ const Home:FC = () => {
     return (
         <div className='home-container' >
             <div className='home'>
-               <div><img className='logo' src={require('../Images/logo.png') }/></div> 
+               <div><img className='logo' src={require('../Images/logo.png') } alt='logo'/></div> 
                 HYPNOS MOORE RIVER GOLF
                 <HomeButtons />
                 {/* <button onClick={() => addHandler()}>add to db</button>

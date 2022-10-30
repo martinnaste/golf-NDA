@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import LinkButton from '../LinkButton'
 import { IPlayer } from "../PlayGame/PlayGame"
 import ScoreRows from './ScoreRows'
@@ -9,6 +9,15 @@ const pars = [2,2,3,2,3,3,5,3,6]
 const HolePage:FC<IHolePageProps> = (props) => {
     const [holeNumber, setHoleNumber] = useState(props.hole)
     const [playingTableArray, setPlayingTableArray] = useState(props.playingTableArray)
+
+    const location: any = useLocation();
+    const loggedIn = (() => {
+        if(typeof location.state?.loggedIn === 'boolean'){
+            return location.state?.loggedIn
+        } else if(typeof location.state?.from === 'object'){
+            return location.state?.from.state.loggedIn
+        }
+    })()
 
     function incrementScore(name: string){
         var newScoreTable: any[] = []
@@ -76,15 +85,38 @@ const HolePage:FC<IHolePageProps> = (props) => {
         </div>
     ) 
 
+    function getStyle() {
+        //run to see all 0 scores
+        var containsZero = false
+        for(const player of playingTableArray[holeNumber]) {
+            if(player.Score === 0){
+                containsZero = true
+                break
+            }
+        }
+        // return containsZero;
+        return false; // Temp for testing
+    }
+
     function getNextHoleButton() {
             return(
                 <div  style={{display:"flex",width: '100%',justifyContent: 'space-between', flexDirection: "row-reverse"}}>
                     {holeNumber + 1 < 9 ?
-                      <div className='button' onClick={()=>{setHoleNumber(holeNumber+1)}}>
-                        Next Hole 
-                      </div>
+                        <button 
+                            className='button' 
+                            style={{
+                                fontFamily: '\'ThaLeah\'',
+                                border: 'none',
+                                opacity: (getStyle() ? "0.5" : 1),
+                                width: "110px"
+                            }} 
+                            disabled={getStyle()}
+                            onClick={() => {setHoleNumber(holeNumber+1)}}
+                        >
+                            Next Hole
+                        </button>
                     :
-                    <LinkButton text='End Game...' redirect={'/EndGame'}  params={{state:{holeProps: {playingTable: playingTableArray, number: 0}}}}/>
+                    <LinkButton text='End Game...' redirect={'/EndGame'}  params={{state:{holeProps: {playingTable: playingTableArray, number: 0}, loggedIn: loggedIn}}}/>
                     }
                     {holeNumber > 0 && 
                         <div className='button' onClick={()=>{setHoleNumber(holeNumber-1)}}>

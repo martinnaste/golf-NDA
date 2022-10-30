@@ -9,6 +9,7 @@ const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
     const [successSubmit, setSuccessSubmit] = useState(false);
     const [nameExists, setNameExists] = useState(false);
     const [emptyName, setEmptyName] = useState(false);
+    const [authError, setAuthError] = useState('');
     const [addedPlayersList, setAddedPlayersList] = useState([''])
 
     async function onSubmit(){
@@ -79,11 +80,14 @@ const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
                     window.alert(error);
                     return;
                 });
+            } else {
+                setAuthError(authed.message)
             }
         } else if(isMatch) {
             setNameExists(true)
             setEmptyName(false)
             setSuccessSubmit(false)
+            setAuthError('')
         }
     }
 
@@ -106,6 +110,7 @@ const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
             />
             <Button text='Submit' onClick={() => {onSubmit()}}/>
             <br></br>
+            {authError && <h2 style={{"color": "orange"}}>{authError}</h2>}
             {nameExists && <h2 style={{"color":"orange"}}>Name already exists, enter a different name</h2>}
             {emptyName && <h2 style={{"color":"orange"}}>Empty names not accepted</h2>}
             {successSubmit && <h2 style={{"color":"green"}}>Successfully submitted new player: {tempPlayerName}</h2>}

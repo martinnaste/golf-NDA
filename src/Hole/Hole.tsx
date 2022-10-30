@@ -6,7 +6,6 @@ import '../Button.css'
 import { useLocation } from 'react-router-dom'
 import { IPlayer } from '../PlayGame/PlayGame'
 import HolePage from './HolePage'
-import EndGame from './EndGame/EndGame'
 
 const Hole: FC = () => {
     const location: any = useLocation()

@@ -4,10 +4,8 @@
 }
 
 .home-container {
-    /* background: black; */
     background: rgb(45, 46, 59);
-    
-    height: 100vh;
+    height: 87vh;
 }
 
 .home {
@@ -19,8 +17,4 @@
     flex-direction: column;
     font-family: Thaleah;
     font-size: 32px;
-}
-
-.logo{
-    scale: 2;
 }

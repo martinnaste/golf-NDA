@@ -17,13 +17,13 @@ const LoginModal: FC<IHistoryProps> = (props) => {
         const response = await fetch(`http://localhost:5001/leaderboards/`);
  
         if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
         }
     
         const records = await response.json();
-        console.log(records)
+        // console.log(records)
         for(let i = 0; i < records.length; i++){
             records[i].Players.sort((a: any, b: any) => a.Score - b.Score)
         }

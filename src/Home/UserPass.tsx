@@ -26,7 +26,7 @@ const UserPass:FC<IUserPassProps> = () => {
 
         let responseText = await response.json()
         if(!responseText.auth){
-            setLoginMessage(responseText.auth)
+            setLoginMessage(responseText.Failed)
         } else if(responseText.auth){
             localStorage.setItem("token", responseText.token)
             setLoginMessage(responseText.auth)
