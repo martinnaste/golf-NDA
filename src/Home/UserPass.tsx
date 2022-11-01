@@ -53,8 +53,7 @@ const UserPass:FC<IUserPassProps> = () => {
         <>
             {loginMessage && <h2 style={{"color":"orange",fontSize: "initial", margin: "0"}}>{loginMessage}</h2>}
             <input id='userpass' className='input' placeholder='USERNAME' onChange={onUsernameChangeHandler}></input>
-            <input id='userpass' className='input' placeholder='PASSWORD' onChange={onPasswordChangeHandler}></input>
-            {/* <h3 onClick={() => {addNewuser()}}>USER</h3> */}
+            <input id='userpass' type='password' className='input' placeholder='PASSWORD' onChange={onPasswordChangeHandler}></input>
             <div className='login-text-container' onClick={()=>{onClickHandler()}}>
                 <h3 className='login-text'>Login</h3>
             </div>
