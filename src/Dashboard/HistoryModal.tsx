@@ -8,13 +8,14 @@ const LoginModal: FC<IHistoryProps> = (props) => {
     const [allLeaderboards, setAllLeaderboards] = useState<ILeaderboardObj[]>()
     const [selectedLeaderboard, setSelectedLeaderboard] = useState<ILeaderboardObj>()
     const [gameSelected, setGameSelected] = useState(-1)
-
+    var URL ='http://'+ window.location.hostname+':5001'
+    
     useEffect(() => {
         getAllLeaderboards()
     }, [])
 
     async function getAllLeaderboards() {
-        const response = await fetch(`http://localhost:5001/leaderboards/`);
+        const response = await fetch(URL + `/leaderboards/`);
  
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;

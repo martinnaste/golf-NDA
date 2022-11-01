@@ -20,7 +20,7 @@ const PlayGame: FC = () => {
     const [allPlayers, setAllPlayers]= useState<IPlayer[]>()
     const [playerTable, setPlayerTable]= useState<IPlayer[]>()
     const [playingTable, setPlayingTable]= useState<IPlayer[]>()
-
+    var URL ='http://'+ window.location.hostname+':5001'
     useEffect(() => {
         getAllPlayers()
     }, [])
@@ -97,7 +97,7 @@ const PlayGame: FC = () => {
     )
 
     async function getAllPlayers() {
-        const response = await fetch(`http://localhost:5001/players/`);
+        const response = await fetch(URL + `/players/`);
  
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;

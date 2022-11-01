@@ -11,6 +11,7 @@ const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
     const [emptyName, setEmptyName] = useState(false);
     const [authError, setAuthError] = useState('');
     const [addedPlayersList, setAddedPlayersList] = useState([''])
+    var URL ='http://'+ window.location.hostname+':5001'
 
     async function onSubmit(){
         setTempPlayerName(playerName)
@@ -47,7 +48,7 @@ const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
         if(!isMatch && !isEmpty && !exists){
             setNameExists(false)
             //Auth
-            const authed = await fetch(`http://localhost:5001/isUserAuth/`, {
+            const authed = await fetch(URL + `/isUserAuth/`, {
                 method: "GET",
                 headers: {
                     "x-access-token": localStorage.getItem("token") || ''
@@ -61,7 +62,7 @@ const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
 
             if(authed.authed) {
                 //Push player to database
-                await fetch("http://localhost:5001/players/add", {
+                await fetch(URL + "/players/add", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

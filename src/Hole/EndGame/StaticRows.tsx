@@ -22,8 +22,9 @@ const StaticRows:FC<IStaticRow> = (props) => {
                     </tr>
                 )
             })
-            : 
-            ''
+
+            
+            
         )
     }
     

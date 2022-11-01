@@ -12,6 +12,8 @@ const Dash: FC = () => {
     const [showHistoryModal, setShowHistoryModal] = useState(false);
     const [latestGameSimple, setLatestGameSimple] = useState<ILatestLeaderboardSimpleObj>()
     const [latestGameDate, setLatestGameDate] = useState('')
+
+    var URL ='http://'+ window.location.hostname+':5001'
     
     useEffect(() => {
         getLatestLeaderboard();
@@ -27,7 +29,7 @@ const Dash: FC = () => {
     })()
 
     async function getLatestLeaderboard() {
-        const response = await fetch(`http://localhost:5001/leaderboard/`);
+        const response = await fetch(URL + `/leaderboard/`);
  
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
@@ -53,7 +55,9 @@ const Dash: FC = () => {
         setLatestGameSimple(filteredLeaderboard)
     }
 
+    console.log(window.location.href)
     return (
+        
         <div className='page'>
 
             <div style={{position:"absolute"}}>
@@ -86,7 +90,7 @@ const Dash: FC = () => {
 
             {/* Buttons */}
             <div style={{display: "flex",justifyContent: "center"}}>
-                <Button text="History" onClick={showHistoryModalHandler} />
+                <Button text="History" onClick={showHistoryModalHandler}  />
                 { loggedIn &&
                     <LinkButton text="Play" redirect={"../PlayGame"} params={{state:{loggedIn: loggedIn}}}/>
                 }

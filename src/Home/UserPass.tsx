@@ -1,3 +1,4 @@
+import { url } from 'inspector'
 import React, { FC, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -6,6 +7,8 @@ const UserPass:FC<IUserPassProps> = () => {
     const [password, setPassword] = useState("")
     const [loginMessage, setLoginMessage] = useState("")
     const navigate = useNavigate();
+
+    var URL ='http://'+ window.location.hostname+':5001'
 
     const onUsernameChangeHandler = (event :any)=> {
         setUsername(event.target.value);
@@ -16,7 +19,7 @@ const UserPass:FC<IUserPassProps> = () => {
     }
 
     async function onClickHandler() {
-        const response = await fetch(`http://localhost:5001/login`, {
+        const response = await fetch(URL + `/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -35,7 +38,7 @@ const UserPass:FC<IUserPassProps> = () => {
     }
 
     async function addNewuser() {
-        const response = await fetch(`http://localhost:5001/addUser`, {
+        const response = await fetch(URL + `/addUser`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
