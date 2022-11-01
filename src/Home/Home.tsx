@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import "./Home.css"
 import HomeButtons from './HomeButtons'
 
@@ -118,7 +118,7 @@ const Home:FC = () => {
     return (
         <div className='home-container' >
             <div className='home'>
-               {/* <div><img className='logo' src={require('../Images/logo.png') }/></div>  */}
+                <div><img className='logo' src={require('../Images/logo.png') }/></div>  
                 HYPNOS MOORE RIVER GOLF
                 <HomeButtons />
             </div>

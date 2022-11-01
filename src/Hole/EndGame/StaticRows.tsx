@@ -4,7 +4,7 @@ const StaticRows:FC<IStaticRow> = (props) => {
 
     function returnRows() {
         return (
-            props && props.finalTable ?
+            (props && props.finalTable) &&
             props.finalTable.map((Player: { Name: string; Score: number }, index: any) => {
                 return (
                     <tr key={Player.Name}>
