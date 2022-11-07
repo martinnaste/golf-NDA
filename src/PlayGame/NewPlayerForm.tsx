@@ -2,6 +2,8 @@ import React, { FC, useState } from 'react'
 import Button from '../Button'
 import { IPlayer } from './PlayGame';
 import './NewPlayerForm.css';
+const URL = `http://${window.location.hostname}:5001`
+
 
 const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
     const [playerName, setPlayerName] = useState('');
@@ -38,7 +40,7 @@ const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
         }
 
         const exists = addedPlayersList.some((name) => {
-            if(name === playerName.toLowerCase()){
+            if(name.toLowerCase() === playerName.toLowerCase()){
                 return true;
             } else {
                 return false;

@@ -8,6 +8,9 @@ import HistoryModal from './HistoryModal'
 import PreviousGame from './PreviousGame'
 import { useLocation } from 'react-router-dom'
 
+const URL = `http://${window.location.hostname}:5001`
+
+
 const Dash: FC = () => {
     const [showHistoryModal, setShowHistoryModal] = useState(false);
     const [latestGameSimple, setLatestGameSimple] = useState<ILatestLeaderboardSimpleObj>()
@@ -27,6 +30,7 @@ const Dash: FC = () => {
             return location.state?.from.state.loggedIn
         }
     })()
+    const guest = !loggedIn
 
     async function getLatestLeaderboard() {
         const response = await fetch(URL + `/leaderboard/`);
@@ -93,6 +97,9 @@ const Dash: FC = () => {
                 <Button text="History" onClick={showHistoryModalHandler}  />
                 { loggedIn &&
                     <LinkButton text="Play" redirect={"../PlayGame"} params={{state:{loggedIn: loggedIn}}}/>
+                }
+                { guest && 
+                    <LinkButton text="Watch" redirect={"../Watch"}/>
                 }
                 {/* If Modal is visable (true) show it */}
                 {showHistoryModal && <HistoryModal showHistoryModalHandler={showHistoryModalHandler}/>}

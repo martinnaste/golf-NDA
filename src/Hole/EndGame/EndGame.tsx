@@ -8,6 +8,8 @@ import Podium from './Podium'
 import LinkButton from '../../LinkButton'
 import { useLocation } from 'react-router-dom'
 import StaticRows from './StaticRows'
+import { socket } from '../../index'
+const URL = `http://${window.location.hostname}:5001`
 
 
 const EndGame: FC = () => {
@@ -49,7 +51,7 @@ const EndGame: FC = () => {
     }
 
     async function uploadLeaderboard(leaderboard: any) {
-        const authed = await fetch(`http://localhost:5001/isUserAuth/`, {
+        const authed = await fetch(`${URL}/isUserAuth/`, {
             method: "GET",
             headers: {
                 "x-access-token": localStorage.getItem("token") || ''
@@ -63,7 +65,7 @@ const EndGame: FC = () => {
 
         if(authed.authed) {
             //Push player to database
-            await fetch("http://localhost:5001/leaderboard/add", {
+            await fetch(`${URL}/leaderboard/add`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -88,6 +90,12 @@ const EndGame: FC = () => {
     useEffect(() => {
         const finalTable = makeFinalTable()
         uploadLeaderboard(finalTable)
+
+        socket.emit("EndGame", {
+            finalTable: finalTable,
+            id: `${socket.id}${Math.random()}`,
+            socketID: socket.id
+        })
     }, [])
 
     return (

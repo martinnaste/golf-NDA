@@ -6,7 +6,11 @@ import Dash from './Dashboard/Dash';
 import PlayGame from './PlayGame/PlayGame';
 import Hole from './Hole/Hole';
 import EndGame from './Hole/EndGame/EndGame';
+import Watch from './Dashboard/Watch';
+import socketIO from 'socket.io-client'
 
+const URL = `http://${window.location.hostname}:5001`
+export const socket = socketIO(URL);
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -17,6 +21,7 @@ root.render(
             <Route path="PlayGame" element={<PlayGame />} />
             <Route path="Hole" element={<Hole/>} />
             <Route path="EndGame" element={<EndGame/>} />
+            <Route path="Watch" element={<Watch/>} />
         </Routes>
     </Router>
 );

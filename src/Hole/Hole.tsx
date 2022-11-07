@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import LinkButton from '../LinkButton'
 import '../App.css'
 import './Hole.css'
@@ -6,6 +6,8 @@ import '../Button.css'
 import { useLocation } from 'react-router-dom'
 import { IPlayer } from '../PlayGame/PlayGame'
 import HolePage from './HolePage'
+
+import { socket } from '../index'
 
 const Hole: FC = () => {
     const location: any = useLocation()
@@ -22,8 +24,7 @@ const Hole: FC = () => {
         } else if(typeof location.state?.from === 'object'){
             return location.state?.from.state.holeProps
         }
-    })()    
-
+    })()   
     
     const holeNumber = holeProps.number
     //Generates 9 copies of the playerTable Array to keep track of each turn
@@ -39,12 +40,23 @@ const Hole: FC = () => {
         return nineHoles
     })()
 
-
+    useEffect(() => {
+        //Initialise variables in the server if someone has logged in
+        socket.emit("init")
+        //update them
+        socket.emit("update", {
+            array: playingTableArray[holeNumber],
+            holeNum: holeNumber,
+            id: `${socket.id}${Math.random()}`,
+            socketID: socket.id
+        })
+    }, [])
+    
     //If logged in generate a holePage (Player table and image)
     return (
         <>
             {loggedIn ? 
-                <HolePage playingTableArray={playingTableArray as [IPlayer[]]} hole={holeNumber}/>                        
+                <HolePage playingTableArray={playingTableArray as [IPlayer[]]} hole={holeNumber}/>                    
                 :
                 <div className='page'>
                     <div style={{height: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>

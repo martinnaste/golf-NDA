@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import LinkButton from '../LinkButton'
 import { IPlayer } from "../PlayGame/PlayGame"
 import ScoreRows from './ScoreRows'
+import { socket } from '../index'
 
 const pars = [2,2,3,2,3,3,5,3,6]
 
@@ -20,6 +21,16 @@ const HolePage:FC<IHolePageProps> = (props) => {
         }
     })()
 
+    // Function to update the server items for clients
+    function sendUpdate(arr: any, holeNum: any) {
+        socket.emit("update", {
+            array: arr,
+            holeNum: holeNum,
+            id: `${socket.id}${Math.random()}`,
+            socketID: socket.id
+        })
+    }
+
     function incrementScore(name: string){
         var newScoreTable: any[] = []
         playingTableArray[holeNumber].forEach((Player: IPlayer) => {
@@ -32,6 +43,7 @@ const HolePage:FC<IHolePageProps> = (props) => {
         var tempbigarr = JSON.parse(JSON.stringify(playingTableArray))
         tempbigarr[holeNumber] = newScoreTable
         setPlayingTableArray(tempbigarr)
+        sendUpdate(tempbigarr[holeNumber], holeNumber)
     }
 
     function decrementScore(name: string, score: number){
@@ -47,6 +59,7 @@ const HolePage:FC<IHolePageProps> = (props) => {
             var tempbigarr = JSON.parse(JSON.stringify(playingTableArray))
             tempbigarr[holeNumber] = newScoreTable
             setPlayingTableArray(tempbigarr)
+            sendUpdate(tempbigarr[holeNumber], holeNumber)
         }
     }
 

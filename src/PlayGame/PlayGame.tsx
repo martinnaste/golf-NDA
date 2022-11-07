@@ -9,6 +9,9 @@ import NewPlayer from './NewPlayerModal'
 import '../App.css'
 import './PlayGame.css'
 
+const URL = `http://${window.location.hostname}:5001`
+
+
 export interface ScoreTable {
     playerName: string,
     score: number
