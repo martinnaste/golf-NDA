@@ -1,4 +1,3 @@
-import { isDisabled } from '@testing-library/user-event/dist/utils'
 import React, { FC, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import LinkButton from '../LinkButton'
@@ -94,54 +93,54 @@ const HolePage:FC<IHolePageProps> = (props) => {
                         </tbody>
                     </table>
                 </div>
-                {getButtons()}
+                {getNextHoleButton()}
             </div>
         </div>
     ) 
 
-    function isNextHoleDisabled(){
-
-        let disabled = false;
-        playingTableArray[holeNumber].forEach((Player: IPlayer) => {
-            if(Player.Score == 0){
-                disabled = true
+    function getStyle() {
+        //run to see all 0 scores
+        var containsZero = false
+        for(const player of playingTableArray[holeNumber]) {
+            if(player.Score === 0){
+                containsZero = true
+                break
             }
-        });
-        
-        return disabled
+        }
+        // return containsZero;
+        return false; // Temp for testing
     }
 
-
-    //Generates the button templates for back and next hole w/ disabled opacity functionality
-    function generateButton(increment: number , text:String){
-
-        if(increment == -1)
-        {
-            return <button className='button' style={{fontFamily: 'ThaLeah', border: 'none'}} onClick={() => {setHoleNumber(holeNumber + increment)}}>{text}</button>
-        }
-        else{
-            return (<button className='button' style={{fontFamily: 'ThaLeah', border: 'none', opacity: (isNextHoleDisabled() ? "0.5" : 1)}} 
-                    disabled={isNextHoleDisabled()}
-                    onClick={() => {setHoleNumber(holeNumber + increment)}}>{text}</button>)
-        }
-        
-    }
-
-    //
-    function getButtons() {
+    function getNextHoleButton() {
             return(
                 <div  style={{display:"flex",width: '100%',justifyContent: 'space-between', flexDirection: "row-reverse"}}>
-                    {holeNumber + 1 < 9?
-                         generateButton(1,'Next Hole')
+                    {holeNumber + 1 < 9 ?
+                        <button 
+                            className='button' 
+                            style={{
+                                fontFamily: '\'ThaLeah\'',
+                                border: 'none',
+                                opacity: (getStyle() ? "0.5" : 1),
+                                width: "110px"
+                            }} 
+                            disabled={getStyle()}
+                            onClick={() => {
+                                sendUpdate(playingTableArray[holeNumber+1], holeNumber+1)
+                                setHoleNumber(holeNumber+1)
+                            }}
+                        >
+                            Next Hole
+                        </button>
                     :
-                    isNextHoleDisabled() ?
-                          generateButton(1,'Next Hole')
-                    :
-                     <LinkButton  text='End Game...' redirect={'/EndGame'}  params={{state:{holeProps: {playingTable: playingTableArray, number: 0}}}}/>
-
-                }
+                    <LinkButton text='End Game...' redirect={'/EndGame'}  params={{state:{holeProps: {playingTable: playingTableArray, number: 0}, loggedIn: loggedIn}}}/>
+                    }
                     {holeNumber > 0 && 
-                        generateButton(-1,'Back')
+                        <div className='button' onClick={()=>{
+                            sendUpdate(playingTableArray[holeNumber-1], holeNumber-1)
+                            setHoleNumber(holeNumber-1)
+                        }}>
+                            Back
+                        </div>
                     }
                 </div>
             )

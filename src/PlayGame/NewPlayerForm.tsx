@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react'
 import Button from '../Button'
 import { IPlayer } from './PlayGame';
 import './NewPlayerForm.css';
-const URL = `http://${window.location.hostname}:5001`
 
 
 const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
