@@ -27,10 +27,10 @@ const ScoreRows:FC<IScoreRowsProps> = (props) => {
     
                         <td >
     
-                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <div onClick={() => {props.decrementScore(Player.Name, Player.Score)}}  >-</div>
-                                <div style={{ padding: '0 5px 0 5px' }}>{Player.Score}</div>
-                                <div onClick={() => {props.incrementScore(Player.Name)}}>+</div>
+                            <div style={{ display: 'flex', alignItems: 'center'}}>
+                                <div style={{padding:'0 5px 0 5px', fontSize:"36px"}} onClick={() => {props.decrementScore(Player.Name, Player.Score)}}  >-</div>
+                                <div style={{ padding: '0 5px 0 5px', minWidth:"16px", textAlign:"center" }}>{Player.Score}</div>
+                                <div style={{padding:'0 5px 0 5px', fontSize:"36px"}} onClick={() => {props.incrementScore(Player.Name)}}>+</div>
                             </div>
     
                         </td>

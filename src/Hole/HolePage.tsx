@@ -73,16 +73,16 @@ const HolePage:FC<IHolePageProps> = (props) => {
             >
                 <p className='title'>Hole Number: {holeNumber+1} </p>
                 <p className='title'>Par: {pars[holeNumber]} </p>
-                <img src={require(('../Images/' + (holeNumber+1) +  '.png')) } className="holeImg" alt={`Hole Number ${holeNumber+1}`}/>
+                <div className='holeImg'><img src={require(('../Images/' + (holeNumber+1) +  '.png')) } style={{width:"90%"}} alt={`Hole Number ${holeNumber+1}`}/></div>
                 <div className='playerTableDiv'>
                     <table className='playerTable' style={{ width: "90%" }}>
                         <tbody>
                             <tr style={{ textAlign: "left", fontSize: "24px" }} >
 
-                                <td >
+                                <td style={{paddingRight: '12px'}} >
                                     Players
                                 </td>
-                                <td>
+                                <td style={{paddingRight: '12px'}}>
                                     Score
                                 </td>
                                 <td>
@@ -93,7 +93,7 @@ const HolePage:FC<IHolePageProps> = (props) => {
                         </tbody>
                     </table>
                 </div>
-                {getNextHoleButton()}
+                {getButtons()}
             </div>
         </div>
     ) 
@@ -113,27 +113,20 @@ const HolePage:FC<IHolePageProps> = (props) => {
 
     function getNextHoleButton() {
             return(
-                <div  style={{display:"flex",width: '100%',justifyContent: 'space-between', flexDirection: "row-reverse"}}>
-                    {holeNumber + 1 < 9 ?
-                        <button 
-                            className='button' 
-                            style={{
-                                fontFamily: '\'ThaLeah\'',
-                                border: 'none',
-                                opacity: (getStyle() ? "0.5" : 1),
-                                width: "110px"
-                            }} 
-                            disabled={getStyle()}
-                            onClick={() => {
-                                sendUpdate(playingTableArray[holeNumber+1], holeNumber+1)
-                                setHoleNumber(holeNumber+1)
-                            }}
-                        >
-                            Next Hole
-                        </button>
+                <div  style={{ display:"flex",width: '100%',justifyContent: 'space-between', flexDirection: "row-reverse"}}>
+                    {
+                    //If we're still playing
+                    holeNumber + 1 < 9?
+                         generateButton(1,'Next Hole')
                     :
-                    <LinkButton text='End Game...' redirect={'/EndGame'}  params={{state:{holeProps: {playingTable: playingTableArray, number: 0}, loggedIn: loggedIn}}}/>
-                    }
+                    // If on last hole but scores are still on 0 value
+                    isNextHoleDisabled() ?
+                          generateButton(1,'End Game')
+                    :
+                    //end the game
+                     <LinkButton  text='End Game...' redirect={'/EndGame'}  params={{state:{holeProps: {playingTable: playingTableArray, number: 0}}}}/>
+
+                }
                     {holeNumber > 0 && 
                         <div className='button' onClick={()=>{
                             sendUpdate(playingTableArray[holeNumber-1], holeNumber-1)

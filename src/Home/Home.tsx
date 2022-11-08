@@ -118,7 +118,7 @@ const Home:FC = () => {
     return (
         <div className='home-container' >
             <div className='home'>
-                <div><img className='logo' src={require('../Images/logo.png') }/></div>  
+                <div style={{position:"absolute", top:"12%"}}><img className='logo' src={require('../Images/logo.png') }/></div>  
                 HYPNOS MOORE RIVER GOLF
                 <HomeButtons />
             </div>

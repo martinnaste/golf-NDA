@@ -8,10 +8,14 @@
     margin: 3vh;
 }
 
+
 .holeImg{
-    width: 100%;
-    margin-top: -80px;
-    margin-bottom: -100px;
+    width:90%;
+
+    /* Original image size is 400x400 */
+    max-width: 400px;
+    max-height: 250px;
+    margin-top: -60px;    
 }
 
 .title{
