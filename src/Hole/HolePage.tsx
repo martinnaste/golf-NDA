@@ -108,34 +108,27 @@ const HolePage:FC<IHolePageProps> = (props) => {
         });
         console.log(disabled)
         
-        //return disabled
-        return false //TESTING
+        return disabled
+        //return false //TESTING
     }
 
 
     //Generates the button templates for back and next hole w/ disabled opacity functionality
     function generateButton(increment: number , text:String){
 
-        if(increment === -1)
-        {
-            return <button className='button' style={{fontFamily: 'ThaLeah', border: 'none'}} 
-                onClick={() => {
+            return <button className='button' style={{fontFamily: 'ThaLeah', border: 'none'}}
+                  disabled={increment == -1?  true : isNextHoleDisabled() } 
+                  onClick={() => {
+                    sendUpdate(playingTableArray[holeNumber+increment], holeNumber+increment)
                     setHoleNumber(holeNumber + increment)
                 }}>
                     {text}
             </button>
-        }
-        else{
-            return (<button className='button' style={{fontFamily: 'ThaLeah', border: 'none', opacity: (isNextHoleDisabled() ? "0.5" : 1)}} 
-                    disabled={isNextHoleDisabled()}
-                    onClick={() => {
-                        sendUpdate(playingTableArray[holeNumber+1], holeNumber+1)
-                        setHoleNumber(holeNumber + increment)}}>{text}</button>)
-        }
-        
     }
+        
+    
 
-    //
+ 
     function getButtons() {
             return(
                 <div  style={{display:"flex",width: '100%',justifyContent: 'space-between', flexDirection: "row-reverse"}}>
@@ -148,13 +141,13 @@ const HolePage:FC<IHolePageProps> = (props) => {
                      <LinkButton  text='End Game...' redirect={'/EndGame'}  params={{state:{holeProps: {playingTable: playingTableArray, number: 0}}}}/>
 
                 }
-                    {holeNumber > 0 && 
-                        <div className='button' onClick={()=>{
+                    {holeNumber > 0 && generateButton(-1, "Back")
+                       /*<div className='button' onClick={()=>{
                             sendUpdate(playingTableArray[holeNumber-1], holeNumber-1)
                             setHoleNumber(holeNumber-1)
                         }}>
                             Back
-                        </div>
+                        </div>*/
                     }
                 </div>
             )
