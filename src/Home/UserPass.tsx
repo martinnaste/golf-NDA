@@ -8,7 +8,7 @@ const UserPass:FC<IUserPassProps> = () => {
     const [loginMessage, setLoginMessage] = useState("")
     const navigate = useNavigate();
 
-    var URL ='http://'+ window.location.hostname+':5001'
+    const URL = `https://hypnos-dev-api.herokuapp.com`
 
     const onUsernameChangeHandler = (event :any)=> {
         setUsername(event.target.value);

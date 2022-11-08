@@ -12,13 +12,11 @@ const Watch:FC<IWatchProps> = (props) => {
     const [finalTable, setFinalTable] = useState([])
 
     useEffect(() => {
-        console.log("loading here")
         socket.emit("load")
     }, [])
     
     useEffect(() => {
         socket.on('messageResponse', (data: any) => {
-            console.log(data)
             setHoleNumber(data.holeNum)
             setPlayingTableArray(data.array)
             if(data.finalTable) {

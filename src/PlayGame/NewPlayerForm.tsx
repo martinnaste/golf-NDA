@@ -12,7 +12,7 @@ const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
     const [emptyName, setEmptyName] = useState(false);
     const [authError, setAuthError] = useState('');
     const [addedPlayersList, setAddedPlayersList] = useState([''])
-    var URL ='http://'+ window.location.hostname+':5001'
+    const URL = `https://hypnos-dev-api.herokuapp.com`
 
     async function onSubmit(){
         setTempPlayerName(playerName)

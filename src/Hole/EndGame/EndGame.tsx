@@ -9,7 +9,7 @@ import LinkButton from '../../LinkButton'
 import { useLocation } from 'react-router-dom'
 import StaticRows from './StaticRows'
 import { socket } from '../../index'
-const URL = `http://${window.location.hostname}:5001`
+const URL = `https://hypnos-dev-api.herokuapp.com`
 
 
 const EndGame: FC = () => {

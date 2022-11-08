@@ -17,7 +17,7 @@ const Home:FC = () => {
     const [allLeaderboards, setAllLeaderboards] = useState([dummyLeaderboard]);
     
     
-    var URL ='http://'+ window.location.hostname+':5001'
+    const URL = `https://hypnos-dev-api.herokuapp.com`
 
 
 

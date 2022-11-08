@@ -8,7 +8,7 @@ import HistoryModal from './HistoryModal'
 import PreviousGame from './PreviousGame'
 import { useLocation } from 'react-router-dom'
 
-const URL = `http://${window.location.hostname}:5001`
+// const URL = `http://${window.location.hostname}:5001`
 
 
 const Dash: FC = () => {
@@ -16,7 +16,7 @@ const Dash: FC = () => {
     const [latestGameSimple, setLatestGameSimple] = useState<ILatestLeaderboardSimpleObj>()
     const [latestGameDate, setLatestGameDate] = useState('')
 
-    var URL ='http://'+ window.location.hostname+':5001'
+    const URL = `https://hypnos-dev-api.herokuapp.com`
     
     useEffect(() => {
         getLatestLeaderboard();
@@ -59,7 +59,6 @@ const Dash: FC = () => {
         setLatestGameSimple(filteredLeaderboard)
     }
 
-    console.log(window.location.href)
     return (
         
         <div className='page'>
