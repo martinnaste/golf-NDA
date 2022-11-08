@@ -120,8 +120,8 @@ const HolePage:FC<IHolePageProps> = (props) => {
         {
             return <button className='button' style={{fontFamily: 'ThaLeah', border: 'none'}} 
                 onClick={() => {
-                    setHoleNumber(holeNumber + increment)
                     sendUpdate(playingTableArray[holeNumber+1], holeNumber+1)
+                    setHoleNumber(holeNumber + increment)
                 }}>
                     {text}
             </button>
