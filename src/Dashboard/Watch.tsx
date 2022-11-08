@@ -27,6 +27,7 @@ const Watch:FC<IWatchProps> = (props) => {
         socket.on("EndGameResponse", (data: any) => {
             setFinalTable(data.finalTable)
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [socket]);
 
     return (

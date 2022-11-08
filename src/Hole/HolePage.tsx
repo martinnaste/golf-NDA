@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+// import { useLocation } from 'react-router-dom'
 import LinkButton from '../LinkButton'
 import { IPlayer } from "../PlayGame/PlayGame"
 import ScoreRows from './ScoreRows'
@@ -11,14 +11,14 @@ const HolePage:FC<IHolePageProps> = (props) => {
     const [holeNumber, setHoleNumber] = useState(props.hole)
     const [playingTableArray, setPlayingTableArray] = useState(props.playingTableArray)
 
-    const location: any = useLocation();
-    const loggedIn = (() => {
-        if(typeof location.state?.loggedIn === 'boolean'){
-            return location.state?.loggedIn
-        } else if(typeof location.state?.from === 'object'){
-            return location.state?.from.state.loggedIn
-        }
-    })()
+    // const location: any = useLocation();
+    // const loggedIn = (() => {
+    //     if(typeof location.state?.loggedIn === 'boolean'){
+    //         return location.state?.loggedIn
+    //     } else if(typeof location.state?.from === 'object'){
+    //         return location.state?.from.state.loggedIn
+    //     }
+    // })()
 
     // Function to update the server items for clients
     function sendUpdate(arr: any, holeNum: any) {
@@ -106,6 +106,7 @@ const HolePage:FC<IHolePageProps> = (props) => {
                 disabled = true
             }
         });
+        console.log(disabled)
         
         //return disabled
         return false //TESTING
@@ -115,9 +116,15 @@ const HolePage:FC<IHolePageProps> = (props) => {
     //Generates the button templates for back and next hole w/ disabled opacity functionality
     function generateButton(increment: number , text:String){
 
-        if(increment == -1)
+        if(increment === -1)
         {
-            return <button className='button' style={{fontFamily: 'ThaLeah', border: 'none'}} onClick={() => {setHoleNumber(holeNumber + increment)}}>{text}</button>
+            return <button className='button' style={{fontFamily: 'ThaLeah', border: 'none'}} 
+                onClick={() => {
+                    setHoleNumber(holeNumber + increment)
+                    sendUpdate(playingTableArray[holeNumber+1], holeNumber+1)
+                }}>
+                    {text}
+            </button>
         }
         else{
             return (<button className='button' style={{fontFamily: 'ThaLeah', border: 'none', opacity: (isNextHoleDisabled() ? "0.5" : 1)}} 

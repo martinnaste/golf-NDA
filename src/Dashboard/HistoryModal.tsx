@@ -12,6 +12,7 @@ const LoginModal: FC<IHistoryProps> = (props) => {
     
     useEffect(() => {
         getAllLeaderboards()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     async function getAllLeaderboards() {

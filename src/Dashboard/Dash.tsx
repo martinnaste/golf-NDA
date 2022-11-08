@@ -20,6 +20,7 @@ const Dash: FC = () => {
     
     useEffect(() => {
         getLatestLeaderboard();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
     const location: any = useLocation();

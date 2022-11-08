@@ -24,6 +24,7 @@ const PlayGame: FC = () => {
     const URL = `https://hypnos-dev-api.herokuapp.com`
     useEffect(() => {
         getAllPlayers()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
     const location: any = useLocation();

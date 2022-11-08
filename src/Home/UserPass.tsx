@@ -1,4 +1,3 @@
-import { url } from 'inspector'
 import React, { FC, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -37,17 +36,17 @@ const UserPass:FC<IUserPassProps> = () => {
         }
     }
 
-    async function addNewuser() {
-        const response = await fetch(URL + `/addUser`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        }
-        });
+    // async function addNewuser() {
+    //     const response = await fetch(URL + `/addUser`, {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     }
+    //     });
 
-        let responseText = await response.json()
-        console.log(responseText)
-    }
+    //     let responseText = await response.json()
+    //     console.log(responseText)
+    // }
 
     return (
         <>
