@@ -25,6 +25,7 @@ const Connect:FC = () => {
             typeof window.ethereum !== "undefined"
         ) {
             getAccount()
+            accountAddressShort()
         } else {
             alert("Please use a browser with MetaMask Support")
         }

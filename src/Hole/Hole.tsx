@@ -50,6 +50,7 @@ const Hole: FC = () => {
             id: `${socket.id}${Math.random()}`,
             socketID: socket.id
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
     //If logged in generate a holePage (Player table and image)
