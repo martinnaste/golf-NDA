@@ -116,8 +116,9 @@ const HolePage:FC<IHolePageProps> = (props) => {
     //Generates the button templates for back and next hole w/ disabled opacity functionality
     function generateButton(increment: number , text:string){
             
-            //Dont Run on Back button
             let disabled = false;
+
+            //Dont Run on Back button
             if(text !== "Back"){
                 disabled = isNextHoleDisabled();
             }
