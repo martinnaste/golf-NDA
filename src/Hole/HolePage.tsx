@@ -114,10 +114,22 @@ const HolePage:FC<IHolePageProps> = (props) => {
 
 
     //Generates the button templates for back and next hole w/ disabled opacity functionality
-    function generateButton(increment: number , text:String){
-
-            return <button className='button' style={{fontFamily: 'ThaLeah', border: 'none'}}
-                  disabled={increment == -1?  true : isNextHoleDisabled() } 
+    function generateButton(increment: number , text:string){
+            
+            //Dont Run on Back button
+            let disabled = false;
+            if(text !== "Back"){
+                disabled = isNextHoleDisabled();
+            }
+          
+            let styling = {'fontFamily': 'ThaLeah', 'border': 'none', 'opacity':'1'}
+            //Set opacity to half on disabled buttons
+            if(disabled){
+                 styling = {'fontFamily': 'ThaLeah', 'border': 'none','opacity':'0.5'}
+            }
+           
+            return <button className='button' style={styling}
+                  disabled={disabled} 
                   onClick={() => {
                     sendUpdate(playingTableArray[holeNumber+increment], holeNumber+increment)
                     setHoleNumber(holeNumber + increment)
