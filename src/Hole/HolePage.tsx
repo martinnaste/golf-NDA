@@ -75,17 +75,17 @@ const HolePage:FC<IHolePageProps> = (props) => {
                 <p className='title'>Par: {pars[holeNumber]} </p>
                 <div className='holeImg'><img src={require(('../Images/' + (holeNumber+1) +  '.png')) } style={{width:"90%"}} alt={`Hole Number ${holeNumber+1}`}/></div>
                 <div className='playerTableDiv'>
-                    <table className='playerTable' style={{ width: "90%" }}>
+                    <table className='playerTable' style={{ width: "90%", paddingTop:"10px", paddingLeft:"8px" }}>
                         <tbody>
                             <tr style={{ textAlign: "left", fontSize: "24px" }} >
 
-                                <td style={{paddingRight: '12px'}} >
+                                <td style={{paddingRight: '22px',textDecoration:"underline 3px solid" }} >
                                     Players
                                 </td>
-                                <td style={{paddingRight: '12px'}}>
+                                <td style={{paddingRight: '22px',textDecoration:"underline 3px solid"}}>
                                     Score
                                 </td>
-                                <td>
+                                <td style={{textDecoration:"underline 3px solid"}}>
                                     total
                                 </td>
                             </tr>
@@ -98,32 +98,45 @@ const HolePage:FC<IHolePageProps> = (props) => {
         </div>
     ) 
 
-    function getStyle() {
-        //run to see all 0 scores
-        var containsZero = false
-        for(const player of playingTableArray[holeNumber]) {
-            if(player.Score === 0){
-                containsZero = true
-                break
+    function isNextHoleDisabled(){
+
+        let disabled = false;
+        playingTableArray[holeNumber].forEach((Player: IPlayer) => {
+            if(Player.Score === 0){
+                disabled = true
             }
-        }
-        // return containsZero;
-        return false; // Temp for testing
+        });
+        
+        //return disabled
+        return false //TESTING
     }
 
-    function getNextHoleButton() {
+
+    //Generates the button templates for back and next hole w/ disabled opacity functionality
+    function generateButton(increment: number , text:String){
+
+        if(increment == -1)
+        {
+            return <button className='button' style={{fontFamily: 'ThaLeah', border: 'none'}} onClick={() => {setHoleNumber(holeNumber + increment)}}>{text}</button>
+        }
+        else{
+            return (<button className='button' style={{fontFamily: 'ThaLeah', border: 'none', opacity: (isNextHoleDisabled() ? "0.5" : 1)}} 
+                    disabled={isNextHoleDisabled()}
+                    onClick={() => {setHoleNumber(holeNumber + increment)}}>{text}</button>)
+        }
+        
+    }
+
+    //
+    function getButtons() {
             return(
-                <div  style={{ display:"flex",width: '100%',justifyContent: 'space-between', flexDirection: "row-reverse"}}>
-                    {
-                    //If we're still playing
-                    holeNumber + 1 < 9?
+                <div  style={{display:"flex",width: '100%',justifyContent: 'space-between', flexDirection: "row-reverse"}}>
+                    {holeNumber + 1 < 9?
                          generateButton(1,'Next Hole')
                     :
-                    // If on last hole but scores are still on 0 value
                     isNextHoleDisabled() ?
-                          generateButton(1,'End Game')
+                          generateButton(1,'Next Hole')
                     :
-                    //end the game
                      <LinkButton  text='End Game...' redirect={'/EndGame'}  params={{state:{holeProps: {playingTable: playingTableArray, number: 0}}}}/>
 
                 }

@@ -3,7 +3,7 @@ import WatchScores from './WatchScores'
 import LinkButton from '../LinkButton'
 import WatchEndGame from './WatchEndGame'
 import { socket } from '../index'
-
+//Essentially a copy of holePage
 const Watch:FC<IWatchProps> = (props) => {
     const pars = [2,2,3,2,3,3,5,3,6]
 
@@ -49,16 +49,16 @@ const Watch:FC<IWatchProps> = (props) => {
                 >
                     <p className='title'>Hole Number: {holeNumber+1} </p>
                     <p className='title'>Par: {pars[holeNumber]} </p>
-                    <img src={require(('../Images/' + (holeNumber+1) +  '.png')) } className="holeImg" alt={`Hole Number ${holeNumber+1}`}/>
+                    <div className='holeImg'><img src={require(('../Images/' + (holeNumber+1) +  '.png')) } style={{width:"90%"}} alt={`Hole Number ${holeNumber+1}`}/></div>
                     <div className='playerTableDiv'>
-                        <table className='playerTable' style={{ width: "90%" }}>
+                        <table className='playerTable' style={{ width: "90%", paddingLeft:"35px", paddingTop: "10px" }}>
                             <tbody>
                                 <tr style={{ textAlign: "left", fontSize: "24px" }} >
 
-                                    <td >
+                                    <td style={{paddingRight: '75px', textDecoration:"underline 3px solid "}}>
                                         Players
                                     </td>
-                                    <td>
+                                    <td style={{paddingRight: '22px',textDecoration:"underline 3px solid"}}>
                                         Score
                                     </td>
                                 </tr>
