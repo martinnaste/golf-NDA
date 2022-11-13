@@ -113,15 +113,24 @@ const EndGame: FC = () => {
 
             <div className='playerTableDiv'>
                 <table className='playerTable' style={{ width: "90%" }}>
-                    <tbody>
-                        <tr>
-                            <td>#</td>
-                            <td>Player</td>
-                            <td>Total</td>
-                        </tr>
-                        <StaticRows finalTable={makeFinalTable()} /> 
+                    <div 
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            paddingTop: '8px'
+                        }}
+                    >
+                        <tbody>
+                            <tr>
+                                <td>#</td>
+                                <td>Player</td>
+                                <td>Total</td>
+                            </tr>
+                            <StaticRows finalTable={makeFinalTable()} /> 
 
-                    </tbody>
+                        </tbody>
+                    </div>
                 </table>
             </div>
     
@@ -133,7 +142,7 @@ const EndGame: FC = () => {
                         flexDirection: 'row',
                         justifyContent: 'center',
                         fontSize: '24px',
-                        color: 'antiquewhite'
+                        color: 'white'
                     }}
                 >
                     {uploadMessage}

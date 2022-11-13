@@ -3,7 +3,7 @@ table{
     border-radius: 10px;
     font-size: 32px;
     font-family: thaleah;
-    color: antiquewhite;
+    color: white;
 }
 
 th, td{
@@ -13,13 +13,13 @@ th, td{
 }
 
 p{ 
-    color: antiquewhite;
+    color: white;
     font-family: thaleah;
     margin:auto;
 }
 
 h2{
-    color: antiquewhite;
+    color: white;
     font-family: Thaleah;
 }
 

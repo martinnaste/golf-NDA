@@ -20,7 +20,6 @@ const Home:FC = () => {
     const URL = `https://hypnos-dev-api.herokuapp.com`
 
 
-
     useEffect(() => {
         fetchDB()
     // eslint-disable-next-line react-hooks/exhaustive-deps

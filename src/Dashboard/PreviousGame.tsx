@@ -7,7 +7,10 @@ const PreviousGame:FC<IPreviousGameProps> = (props) => {
             return (
                 <tr key={index}>
                     <td>
-                        {`${index + 1}. ${player.Name.length >= 9 ? player.Name.slice(0, 9) + ".." : player.Name}`}
+                        {`${index + 1}.`}
+                    </td>
+                    <td>
+                        {`${player.Name.length >= 9 ? player.Name.slice(0, 9) + ".." : player.Name}`}
                     </td>
                     <td>
                         {player.Score}

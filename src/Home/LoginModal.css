@@ -39,7 +39,7 @@
     height: 24px;
     margin-top: 12px;
     background-color: rgba(12, 17, 22, 0.644);
-    color: antiquewhite;
+    color: white;
     border: none;
     border-radius: 3px;
     outline: none;
@@ -55,7 +55,7 @@
 .login-hr {
     width: 80%;
     margin: 0;
-    background-color: antiquewhite;
+    background-color: white;
     height: 2px;
     border-radius: 5px;
 }

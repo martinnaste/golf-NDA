@@ -76,14 +76,17 @@ const HolePage:FC<IHolePageProps> = (props) => {
                 <p className='title'>Par: {pars[holeNumber]} </p>
                 <div className='holeImg'><img src={require(('../Images/' + (holeNumber+1) +  '.png')) } style={{width:"90%"}} alt={`Hole Number ${holeNumber+1}`}/></div>
                 <div className='playerTableDiv'>
-                    <table className='playerTable' style={{ width: "90%", paddingTop:"10px", paddingLeft:"8px" }}>
+                    {/* <table className='playerTable' style={{ width: "90%", paddingTop:"10px", paddingLeft:"8px" }}> */}
+                    <table className='playerTable' style={{ width: "90%" }}>
                         <tbody>
                             <tr style={{ textAlign: "left", fontSize: "24px" }} >
 
-                                <td style={{paddingRight: '22px',textDecoration:"underline 3px solid" }} >
+                                {/* <td style={{paddingRight: '22px',textDecoration:"underline 3px solid" }} > */}
+                                <td style={{paddingRight: '12px',textDecoration:"underline 3px solid" }} >
                                     Players
                                 </td>
-                                <td style={{paddingRight: '22px',textDecoration:"underline 3px solid"}}>
+                                {/* <td style={{paddingRight: '22px',textDecoration:"underline 3px solid"}}> */}
+                                <td style={{paddingRight: '12px',textDecoration:"underline 3px solid"}}>
                                     Score
                                 </td>
                                 <td style={{textDecoration:"underline 3px solid"}}>

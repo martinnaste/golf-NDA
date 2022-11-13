@@ -21,7 +21,6 @@ const PlayGame: FC = () => {
     const [allPlayers, setAllPlayers]= useState<IPlayer[]>()
     const [playerTable, setPlayerTable]= useState<IPlayer[]>()
     const [playingTable, setPlayingTable]= useState<IPlayer[]>()
-    const [loading, setLoading] = useState(true);
 
     const URL = `https://hypnos-dev-api.herokuapp.com`
     useEffect(() => {
@@ -116,7 +115,6 @@ const PlayGame: FC = () => {
         });
         setAllPlayers(players);
         setPlayerTable(players);
-        setLoading(false);
     }
 
 

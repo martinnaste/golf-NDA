@@ -18,15 +18,24 @@ const WatchEndGame:FC<IWatchEndGameProps> = (props) => {
 
             <div className='playerTableDiv'>
                 <table className='playerTable' style={{ width: "90%" }}>
-                    <tbody>
-                        <tr>
-                            <td>#</td>
-                            <td>Player</td>
-                            <td>Total</td>
-                        </tr>
-                        <StaticRows finalTable={props.finalTable} /> 
+                    <div 
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            paddingTop: '8px'
+                        }}
+                    >
+                        <tbody>
+                            <tr>
+                                <td>#</td>
+                                <td>Player</td>
+                                <td>Total</td>
+                            </tr>
+                            <StaticRows finalTable={props.finalTable} /> 
 
-                    </tbody>
+                        </tbody>
+                    </div>
                 </table>
             </div>
     

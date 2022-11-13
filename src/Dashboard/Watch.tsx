@@ -50,19 +50,31 @@ const Watch:FC<IWatchProps> = (props) => {
                     <p className='title'>Par: {pars[holeNumber]} </p>
                     <div className='holeImg'><img src={require(('../Images/' + (holeNumber+1) +  '.png')) } style={{width:"90%"}} alt={`Hole Number ${holeNumber+1}`}/></div>
                     <div className='playerTableDiv'>
-                        <table className='playerTable' style={{ width: "90%", paddingLeft:"35px", paddingTop: "10px" }}>
-                            <tbody>
-                                <tr style={{ textAlign: "left", fontSize: "24px" }} >
+                        {/* <table className='playerTable' style={{ width: "90%", paddingLeft:"35px", paddingTop: "10px" }}> */}
+                        <table className='playerTable' style={{ width: "90%" }}>
+                            <div 
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    paddingTop: '8px'
+                                }}
+                            >
+                                <tbody>
+                                    <tr style={{ textAlign: "center", fontSize: "24px" }} >
 
-                                    <td style={{paddingRight: '75px', textDecoration:"underline 3px solid "}}>
-                                        Players
-                                    </td>
-                                    <td style={{paddingRight: '22px',textDecoration:"underline 3px solid"}}>
-                                        Score
-                                    </td>
-                                </tr>
-                                {playingTableArray.length > 0 && <WatchScores playingTableArray={playingTableArray} holeNumber={holeNumber} />}
-                            </tbody>
+                                        {/* <td style={{paddingRight: '75px', textDecoration:"underline 3px solid "}}> */}
+                                        <td style={{ paddingRight: "12px", textDecoration:"underline 3px solid "}}>
+                                            Players
+                                        </td>
+                                        {/* <td style={{paddingRight: '22px',textDecoration:"underline 3px solid"}}> */}
+                                        <td style={{ paddingRight: "12px", textDecoration:"underline 3px solid"}}>
+                                            Score
+                                        </td>
+                                    </tr>
+                                    {playingTableArray.length > 0 && <WatchScores playingTableArray={playingTableArray} holeNumber={holeNumber} />}
+                                </tbody>
+                            </div>
                         </table>
                     </div>
                     <LinkButton text='Back' redirect="/Dash" />

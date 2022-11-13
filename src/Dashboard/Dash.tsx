@@ -17,7 +17,6 @@ const Dash: FC = () => {
     const [latestGameSimple, setLatestGameSimple] = useState<ILatestLeaderboardSimpleObj>()
     const [latestGameDate, setLatestGameDate] = useState('')
 
-   
     const URL = `https://hypnos-dev-api.herokuapp.com`
     
     useEffect(() => {
@@ -94,6 +93,9 @@ const Dash: FC = () => {
                     <table className='fadein' style={{ width: "90%", marginTop:"25px"}}>
                         <tbody>
                             <tr style={{ textAlign: "left", fontSize: "24px" }}>
+                                <td>
+                                    #
+                                </td>
                                 <td >
                                     Name
                                 </td>
