@@ -21,6 +21,8 @@ const PlayGame: FC = () => {
     const [allPlayers, setAllPlayers]= useState<IPlayer[]>()
     const [playerTable, setPlayerTable]= useState<IPlayer[]>()
     const [playingTable, setPlayingTable]= useState<IPlayer[]>()
+    const [loading, setLoading] = useState(true);
+
     const URL = `https://hypnos-dev-api.herokuapp.com`
     useEffect(() => {
         getAllPlayers()
@@ -57,7 +59,7 @@ const PlayGame: FC = () => {
                                         Players
                                     </td>
                                 </tr>
-
+                               
                                 {playerTable && <PlayerRow playerTable={playerTable} movePlayer={(e: any, l: any)=> movePlayer(e, l)} left={true}/>}
                             </tbody>
                         </table>
@@ -80,7 +82,7 @@ const PlayGame: FC = () => {
                             playingTable && playingTable.length > 0 ?
                             <LinkButton text="Play!" redirect="/Hole" params={{state:{holeProps: {playingTable: playingTable, number: 0}, loggedIn: loggedIn}}}/>
                             :
-                            <LinkButton text="Play!" redirect="/PlayGame" params={{state:{loggedIn: loggedIn}}}/>
+                            <div className='button' style={{opacity:"0.5"}}>Play!</div>
                         }
                     </div>
                 </div>
@@ -114,6 +116,7 @@ const PlayGame: FC = () => {
         });
         setAllPlayers(players);
         setPlayerTable(players);
+        setLoading(false);
     }
 
 

@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
 }
 
 .history-content {
@@ -19,12 +20,13 @@
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    overflow-y: scroll;
+    overflow: auto;
 }
 
 .history-content-container {
     width: 36vh;
     height: 55vh;
+    overflow: auto;
 }
 
 .history-item-container{
@@ -54,3 +56,25 @@
     display: flex;
     justify-content: center;
 }
+
+
+
+
+  
+  
+  @keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+  }
+  
+  /* Firefox < 16 */
+  @-moz-keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+  }
+  
+  /* Safari, Chrome and Opera > 12.1 */
+  @-webkit-keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+  }

@@ -1,13 +1,12 @@
 import React, { FC } from 'react'
 import { IPlayer } from './PlayGame'
-
 const PlayerRow:FC<IPlayerRowProps> = (props) => {
 
     function players( ){
         if(props.playerTable){
             return props.playerTable.map((player, index) => {    
                 return (
-                    <tr style={{display: !props.left ? "block": "table-row"}} key={index}>
+                    <tr style={{display: !props.left ? "block": "table-row", animation:"fadein " + 0.2*index + "s"}} key={index}>
                         { !props.left &&
                             <td onClick={()=> {props.movePlayer(player, props.left)}}>
                                 -

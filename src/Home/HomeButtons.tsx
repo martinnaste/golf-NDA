@@ -12,10 +12,10 @@ const HomeButtons = () => {
 
     return (
         <div className='buttons-container'>
-            <h4 className='button' onClick={showLoginModalHandler}>
+            <div className='button' onClick={showLoginModalHandler}>
                 LOGIN
-            </h4>
-            |
+            </div>
+            
             <div >
                 <LinkButton text='Guest' redirect={"/Dash"} params={{state:{loggedIn: false}}}/>
             </div>

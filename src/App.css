@@ -10,6 +10,22 @@
   src: url('ThaleahFat.ttf') format("truetype")
 }
 
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  max-width: 6px;
+  height: 15px;
+  padding-right: 4px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(40, 40, 46);
+  border-radius: 6px;
+  background-clip: padding-box;
+ 
+}
+
 .page{
   background-color: rgb(45, 46, 59);
 

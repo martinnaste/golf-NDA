@@ -8,14 +8,16 @@ import HistoryModal from './HistoryModal'
 import PreviousGame from './PreviousGame'
 import { useLocation } from 'react-router-dom'
 
-// const URL = `http://${window.location.hostname}:5001`
+
 
 
 const Dash: FC = () => {
+    const [loading, setLoading] = useState(true);
     const [showHistoryModal, setShowHistoryModal] = useState(false);
     const [latestGameSimple, setLatestGameSimple] = useState<ILatestLeaderboardSimpleObj>()
     const [latestGameDate, setLatestGameDate] = useState('')
 
+   
     const URL = `https://hypnos-dev-api.herokuapp.com`
     
     useEffect(() => {
@@ -58,7 +60,10 @@ const Dash: FC = () => {
             Players: filtered
         }
         setLatestGameSimple(filteredLeaderboard)
+        setLoading(false);
     }
+
+
 
     return (
         
@@ -68,42 +73,58 @@ const Dash: FC = () => {
                 <LinkButton text='Back' redirect="/" />
             </div>
 
-            {/* Previous Game HighScore Table */}
-            <div style={{ display: "flex", alignItems: "center", flexDirection: "column", paddingTop:"75px" }}>
+            <div  style={{ paddingTop:"85px" }}>
+                {loading ?  
+                    <div style={{width:"100%",display:"flex", flexDirection: 'column', alignItems:"center"}}>
+                        <img src={require('../Images/loadingPrimary.svg').default} alt='mySvgImage'  />
+                    </div>
+                    :
+                    <>
+                    <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+                {/* Previous Game HighScore Table */}
+        
+                
 
-                <p style={{ fontSize: "42px"}}> Previous game: </p>
-                <p style={{ fontSize: "32px", width: "100%", textAlign: "center" }}>{latestGameDate}</p>
+                    <p className='fadein' style={{ fontSize: "42px"}}> Previous game: </p>
+                
+                    
+                    <p className='fadein' style={{ fontSize: "32px", width: "100%", textAlign: "center" }}>{latestGameDate}</p>
 
-                <table style={{ width: "90%", marginTop:"25px" }}>
-                    <tbody>
-                        <tr style={{ textAlign: "left", fontSize: "24px" }}>
-                            <td >
-                                Name
-                            </td>
-                            <td>
-                                Score
-                            </td>
-                        </tr>
-                        {latestGameSimple &&
-                            <PreviousGame leaderboard={latestGameSimple} />
-                        }
-                    </tbody>
-                </table>
+                
+                    <table className='fadein' style={{ width: "90%", marginTop:"25px"}}>
+                        <tbody>
+                            <tr style={{ textAlign: "left", fontSize: "24px" }}>
+                                <td >
+                                    Name
+                                </td>
+                                <td>
+                                    Score
+                                </td>
+                            </tr>
+                            {latestGameSimple &&
+                                <PreviousGame leaderboard={latestGameSimple} />
+                            }
+                        </tbody>
+                    </table>
+                </div>
 
-            </div>
+                
+              
+                {/* Buttons */}
+                <div className='fadein' style={{display: "flex",justifyContent: "center"}}>
+                    <Button text="History" onClick={showHistoryModalHandler}  />
+                    { loggedIn &&
+                        <LinkButton text="Play" redirect={"../PlayGame"} params={{state:{loggedIn: loggedIn}}}/>
+                    }
+                    { guest && 
+                        <LinkButton text="Watch" redirect={"../Watch"}/>
+                    }
+                    {/* If Modal is visable (true) show it */}
+                    {showHistoryModal && <HistoryModal showHistoryModalHandler={showHistoryModalHandler}/>}
 
-            {/* Buttons */}
-            <div style={{display: "flex",justifyContent: "center"}}>
-                <Button text="History" onClick={showHistoryModalHandler}  />
-                { loggedIn &&
-                    <LinkButton text="Play" redirect={"../PlayGame"} params={{state:{loggedIn: loggedIn}}}/>
+                </div>
+                    </>
                 }
-                { guest && 
-                    <LinkButton text="Watch" redirect={"../Watch"}/>
-                }
-                {/* If Modal is visable (true) show it */}
-                {showHistoryModal && <HistoryModal showHistoryModalHandler={showHistoryModalHandler}/>}
-
             </div>
         </div>
     )

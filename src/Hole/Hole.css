@@ -6,6 +6,8 @@
     text-align: center;
     padding: 5px;
     margin: 3vh;
+
+    transition: 0.5s;
 }
 
 

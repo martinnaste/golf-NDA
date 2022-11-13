@@ -68,7 +68,8 @@ const HolePage:FC<IHolePageProps> = (props) => {
                 style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'flex-end'
+                    alignItems: 'center'
+                    
                 }} 
             >
                 <p className='title'>Hole Number: {holeNumber+1} </p>
@@ -144,7 +145,7 @@ const HolePage:FC<IHolePageProps> = (props) => {
  
     function getButtons() {
             return(
-                <div  style={{display:"flex",width: '100%',justifyContent: 'space-between', flexDirection: "row-reverse"}}>
+                <div  style={{display:"flex",width: '100%',justifyContent: 'space-between', flexDirection: "row-reverse", maxWidth:"650px"}}>
                     {holeNumber + 1 < 9?
                          generateButton(1,'Next Hole')
                     :

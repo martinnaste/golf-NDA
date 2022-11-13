@@ -8,6 +8,7 @@ const LoginModal: FC<IHistoryProps> = (props) => {
     const [allLeaderboards, setAllLeaderboards] = useState<ILeaderboardObj[]>()
     const [selectedLeaderboard, setSelectedLeaderboard] = useState<ILeaderboardObj>()
     const [gameSelected, setGameSelected] = useState(-1)
+    const [loading, setLoading] = useState(true);
     const URL = `https://hypnos-dev-api.herokuapp.com`
     
     useEffect(() => {
@@ -29,6 +30,7 @@ const LoginModal: FC<IHistoryProps> = (props) => {
             records[i].Players.sort((a: any, b: any) => a.Score - b.Score)
         }
         setAllLeaderboards(records)
+        setLoading(false);
     }
 
     function seePreviousGame(index: any) {
@@ -44,7 +46,7 @@ const LoginModal: FC<IHistoryProps> = (props) => {
                 var date = new Date(leaderboard.dateTime).toDateString()
                 return(
                     <tr className='history-item-container' key={index}>
-                        <td className='history-item' onClick={() => {seePreviousGame(index)}}>
+                        <td className='history-item' style={{animation:"fadein " + 0.2*index + "s"}}  onClick={() => {seePreviousGame(index)}}>
                             {date}
                         </td>
                     </tr>
@@ -54,35 +56,44 @@ const LoginModal: FC<IHistoryProps> = (props) => {
     }
 
     return (
+       
         <div className='modal' onClick={props.showHistoryModalHandler}>
-            <div className='history-content' onClick={e => e.stopPropagation()}>
-                <div className='history-content-container'>
-                    {gameSelected === -1 && <table className='history-table'>
-                        <tbody className='history-tbody'>
-                            {displayAllLeaderboards()}
-                        </tbody>
-                    </table>
-                    }
-                    {gameSelected >= 0 && 
-                    <div>
-                        <Button style={{margin: '0px 0px 8px 0px'}} text={'Back'} onClick={() => {setGameSelected(-1)}} />
-                        <table style={{width: "100%"}}>
-                            <tbody>
-                                <tr >
-                                    <td >
-                                        Name
-                                    </td>
-                                    <td>
-                                        Score
-                                    </td>
-                                </tr>
-                                <PreviousGame leaderboard={selectedLeaderboard} />
+             <div className='history-content' onClick={e => e.stopPropagation()}>
+             {loading ?
+                <div><img src={require('../Images/loadingPrimary.svg').default} alt='mySvgImage' /></div>
+                :
+                <>
+                   
+                    <div className='history-content-container fadein'>
+                        {gameSelected === -1 && <table className='history-table'>
+                            <tbody className='history-tbody'>
+                                {displayAllLeaderboards()}
                             </tbody>
                         </table>
-                    </div>
-                    }
-                </div>
-            </div>
+                        }
+                        {gameSelected >= 0 && 
+                        <div>
+                            <Button style={{margin: '0px 0px 8px 0px'}} text={'Back'} onClick={() => {setGameSelected(-1)}} />
+                            <table style={{width: "100%"}}>
+                                <tbody>
+                                    <tr >
+                                        <td >
+                                            Name
+                                        </td>
+                                        <td>
+                                            Score
+                                        </td>
+                                    </tr>
+                                    <PreviousGame leaderboard={selectedLeaderboard} />
+                                </tbody>
+                            </table>
+                        </div>
+                        }
+                      </div>
+               
+                </>
+             }
+             </div>
         </div>
     )
 }
