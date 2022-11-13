@@ -50,7 +50,6 @@ const Watch:FC<IWatchProps> = (props) => {
                     <p className='title'>Par: {pars[holeNumber]} </p>
                     <div className='holeImg'><img src={require(('../Images/' + (holeNumber+1) +  '.png')) } style={{width:"90%"}} alt={`Hole Number ${holeNumber+1}`}/></div>
                     <div className='playerTableDiv'>
-                        {/* <table className='playerTable' style={{ width: "90%", paddingLeft:"35px", paddingTop: "10px" }}> */}
                         <table className='playerTable' style={{ width: "90%" }}>
                             <div 
                                 style={{
@@ -62,12 +61,9 @@ const Watch:FC<IWatchProps> = (props) => {
                             >
                                 <tbody>
                                     <tr style={{ textAlign: "center", fontSize: "24px" }} >
-
-                                        {/* <td style={{paddingRight: '75px', textDecoration:"underline 3px solid "}}> */}
                                         <td style={{ paddingRight: "12px", textDecoration:"underline 3px solid "}}>
                                             Players
                                         </td>
-                                        {/* <td style={{paddingRight: '22px',textDecoration:"underline 3px solid"}}> */}
                                         <td style={{ paddingRight: "12px", textDecoration:"underline 3px solid"}}>
                                             Score
                                         </td>

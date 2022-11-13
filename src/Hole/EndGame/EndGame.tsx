@@ -128,7 +128,6 @@ const EndGame: FC = () => {
                                 <td>Total</td>
                             </tr>
                             <StaticRows finalTable={makeFinalTable()} /> 
-
                         </tbody>
                     </div>
                 </table>

@@ -76,16 +76,12 @@ const HolePage:FC<IHolePageProps> = (props) => {
                 <p className='title'>Par: {pars[holeNumber]} </p>
                 <div className='holeImg'><img src={require(('../Images/' + (holeNumber+1) +  '.png')) } style={{width:"90%"}} alt={`Hole Number ${holeNumber+1}`}/></div>
                 <div className='playerTableDiv'>
-                    {/* <table className='playerTable' style={{ width: "90%", paddingTop:"10px", paddingLeft:"8px" }}> */}
                     <table className='playerTable' style={{ width: "90%" }}>
                         <tbody>
                             <tr style={{ textAlign: "left", fontSize: "24px" }} >
-
-                                {/* <td style={{paddingRight: '22px',textDecoration:"underline 3px solid" }} > */}
                                 <td style={{paddingRight: '12px',textDecoration:"underline 3px solid" }} >
                                     Players
                                 </td>
-                                {/* <td style={{paddingRight: '22px',textDecoration:"underline 3px solid"}}> */}
                                 <td style={{paddingRight: '12px',textDecoration:"underline 3px solid"}}>
                                     Score
                                 </td>
@@ -116,60 +112,51 @@ const HolePage:FC<IHolePageProps> = (props) => {
         //return false //TESTING
     }
 
-
     //Generates the button templates for back and next hole w/ disabled opacity functionality
     function generateButton(increment: number , text:string){
-            
-            let disabled = false;
+        let disabled = false;
 
-            //Dont Run on Back button
-            if(text !== "Back"){
-                disabled = isNextHoleDisabled();
-            }
-          
-            let styling = {'fontFamily': 'ThaLeah', 'border': 'none', 'opacity':'1'}
-            //Set opacity to half on disabled buttons
-            if(disabled){
-                 styling = {'fontFamily': 'ThaLeah', 'border': 'none','opacity':'0.5'}
-            }
-           
-            return <button className='button' style={styling}
-                  disabled={disabled} 
-                  onClick={() => {
+        //Dont Run on Back button
+        if(text !== "Back"){
+            disabled = isNextHoleDisabled();
+        }
+        
+        let styling = {'fontFamily': 'ThaLeah', 'border': 'none', 'opacity':'1'}
+        //Set opacity to half on disabled buttons
+        if(disabled){
+            styling = {'fontFamily': 'ThaLeah', 'border': 'none','opacity':'0.5'}
+        }
+        
+        return (
+            <button 
+                className='button' style={styling}
+                disabled={disabled} 
+                onClick={() => {
                     sendUpdate(playingTableArray[holeNumber+increment], holeNumber+increment)
                     setHoleNumber(holeNumber + increment)
-                }}>
-                    {text}
+                }}
+            >
+                {text}
             </button>
+        )
     }
-        
-    
 
- 
     function getButtons() {
-            return(
-                <div  style={{display:"flex",width: '100%',justifyContent: 'space-between', flexDirection: "row-reverse", maxWidth:"650px"}}>
-                    {holeNumber + 1 < 9?
-                         generateButton(1,'Next Hole')
+        return(
+            <div  style={{display:"flex",width: '100%',justifyContent: 'space-between', flexDirection: "row-reverse", maxWidth:"650px"}}>
+                {holeNumber + 1 < 9 ?
+                    generateButton(1,'Next Hole')
                     :
                     isNextHoleDisabled() ?
-                          generateButton(1,'Next Hole')
+                    generateButton(1,'Next Hole')
                     :
-                     <LinkButton  text='End Game...' redirect={'/EndGame'}  params={{state:{holeProps: {playingTable: playingTableArray, number: 0}}}}/>
-
+                    <LinkButton  text='End Game...' redirect={'/EndGame'}  params={{state:{holeProps: {playingTable: playingTableArray, number: 0}}}}/>
                 }
-                    {holeNumber > 0 && generateButton(-1, "Back")
-                       /*<div className='button' onClick={()=>{
-                            sendUpdate(playingTableArray[holeNumber-1], holeNumber-1)
-                            setHoleNumber(holeNumber-1)
-                        }}>
-                            Back
-                        </div>*/
-                    }
-                </div>
-            )
-        }    
+                {holeNumber > 0 && generateButton(-1, "Back")}
+            </div>
+        )
     }
+}
 
 
 export interface IHolePageProps {

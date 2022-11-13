@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 
 const LinkButton:FC<ILinkButtonProps> = (props) => {
     return (
-        // <div className='linkButton'> 
-            <Link className='linkButton' to={props.redirect} state={{from: props.params}}  >
-                {props.text}
-            </Link>
-        // </div>
+        <Link className='linkButton' to={props.redirect} state={{from: props.params}}  >
+            {props.text}
+        </Link>
     )
 }
 

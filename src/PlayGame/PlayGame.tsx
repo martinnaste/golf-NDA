@@ -50,7 +50,6 @@ const PlayGame: FC = () => {
                     <p style={{ fontSize: "30px", width: "100%", textAlign: "center" }}>Select Players</p>
 
                     <div className='playerTableDiv'>
-
                         <table className='playerTable' style={{ width: "90%", marginTop: "25px", marginLeft: '15px' }}>
                             <tbody>
                                 <tr style={{ textAlign: "left", fontSize: "24px" }} >
@@ -58,7 +57,6 @@ const PlayGame: FC = () => {
                                         Players
                                     </td>
                                 </tr>
-                               
                                 {playerTable && <PlayerRow playerTable={playerTable} movePlayer={(e: any, l: any)=> movePlayer(e, l)} left={true}/>}
                             </tbody>
                         </table>

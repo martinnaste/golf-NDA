@@ -24,10 +24,9 @@ h2{
 }
 
 .fadein{
-  animation: fadein 1s;
-  -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 1s; /* Firefox < 16 */  
-    
+    animation: fadein 1s;
+    -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1s; /* Firefox < 16 */  
 }
 
 

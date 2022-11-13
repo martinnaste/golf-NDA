@@ -6,14 +6,11 @@
     text-align: center;
     padding: 5px;
     margin: 3vh;
-
     transition: 0.5s;
 }
 
-
 .holeImg{
     width:90%;
-
     /* Original image size is 400x400 */
     max-width: 400px;
     max-height: 250px;
@@ -23,5 +20,4 @@
 .title{
     font-size: 48px;
     margin-top: 15px;
-
 }

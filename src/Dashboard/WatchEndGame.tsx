@@ -33,12 +33,10 @@ const WatchEndGame:FC<IWatchEndGameProps> = (props) => {
                                 <td>Total</td>
                             </tr>
                             <StaticRows finalTable={props.finalTable} /> 
-
                         </tbody>
                     </div>
                 </table>
             </div>
-    
             <LinkButton text={"Go Home"} redirect="/Dash" />
         </div>
     )

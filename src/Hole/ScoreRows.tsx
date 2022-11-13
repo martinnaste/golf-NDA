@@ -20,24 +20,19 @@ const ScoreRows:FC<IScoreRowsProps> = (props) => {
             props.playingTableArray[props.holeNumber].map((Player: { Name: string; Score: number }) => {
                 return (
                     <tr key={Player.Name}>
-    
                         <td >
                             {Player.Name}
                         </td>
-    
-                        <td >
-    
+                        <td>
                             <div style={{ display: 'flex', alignItems: 'center'}}>
                                 <div style={{padding:'0 5px 0 5px', fontSize:"36px"}} onClick={() => {props.decrementScore(Player.Name, Player.Score)}}  >-</div>
                                 <div style={{ padding: '0 5px 0 5px', minWidth:"16px", textAlign:"center" }}>{Player.Score}</div>
                                 <div style={{padding:'0 5px 0 5px', fontSize:"36px"}} onClick={() => {props.incrementScore(Player.Name)}}>+</div>
                             </div>
-    
                         </td>
                         <td>
                             {totalScore(Player.Name)}
                         </td>
-    
                     </tr>
                 )
             })

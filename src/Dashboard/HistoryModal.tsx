@@ -56,43 +56,42 @@ const LoginModal: FC<IHistoryProps> = (props) => {
     }
 
     return (
-       
         <div className='modal' onClick={props.showHistoryModalHandler}>
-             <div className='history-content' onClick={e => e.stopPropagation()}>
-             {loading ?
-                <div><img src={require('../Images/loadingPrimary.svg').default} alt='mySvgImage' /></div>
-                :
-                <>
-                   
-                    <div className='history-content-container fadein'>
-                        {gameSelected === -1 && <table className='history-table'>
-                            <tbody className='history-tbody'>
-                                {displayAllLeaderboards()}
-                            </tbody>
-                        </table>
-                        }
-                        {gameSelected >= 0 && 
-                        <div>
-                            <Button style={{margin: '0px 0px 8px 0px'}} text={'Back'} onClick={() => {setGameSelected(-1)}} />
-                            <table style={{width: "100%"}}>
-                                <tbody>
-                                    <tr >
-                                        <td >
-                                            Name
-                                        </td>
-                                        <td>
-                                            Score
-                                        </td>
-                                    </tr>
-                                    <PreviousGame leaderboard={selectedLeaderboard} />
+            <div className='history-content' onClick={e => e.stopPropagation()}>
+                {loading ?
+                    <div>
+                        <img src={require('../Images/loadingPrimary.svg').default} alt='mySvgImage' />
+                    </div>
+                    :
+                    <>
+                        <div className='history-content-container fadein'>
+                            {gameSelected === -1 && <table className='history-table'>
+                                <tbody className='history-tbody'>
+                                    {displayAllLeaderboards()}
                                 </tbody>
                             </table>
+                            }
+                            {gameSelected >= 0 && 
+                                <div>
+                                    <Button style={{margin: '0px 0px 8px 0px'}} text={'Back'} onClick={() => {setGameSelected(-1)}} />
+                                    <table style={{width: "100%"}}>
+                                        <tbody>
+                                            <tr >
+                                                <td >
+                                                    Name
+                                                </td>
+                                                <td>
+                                                    Score
+                                                </td>
+                                            </tr>
+                                            <PreviousGame leaderboard={selectedLeaderboard} />
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
                         </div>
-                        }
-                      </div>
-               
-                </>
-             }
+                    </>
+                }
              </div>
         </div>
     )

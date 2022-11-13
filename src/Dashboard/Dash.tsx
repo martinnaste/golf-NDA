@@ -79,52 +79,41 @@ const Dash: FC = () => {
                     </div>
                     :
                     <>
-                    <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-                {/* Previous Game HighScore Table */}
-        
-                
-
-                    <p className='fadein' style={{ fontSize: "42px"}}> Previous game: </p>
-                
-                    
-                    <p className='fadein' style={{ fontSize: "32px", width: "100%", textAlign: "center" }}>{latestGameDate}</p>
-
-                
-                    <table className='fadein' style={{ width: "90%", marginTop:"25px"}}>
-                        <tbody>
-                            <tr style={{ textAlign: "left", fontSize: "24px" }}>
-                                <td>
-                                    #
-                                </td>
-                                <td >
-                                    Name
-                                </td>
-                                <td>
-                                    Score
-                                </td>
-                            </tr>
-                            {latestGameSimple &&
-                                <PreviousGame leaderboard={latestGameSimple} />
+                        <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+                        {/* Previous Game HighScore Table */}
+                        <p className='fadein' style={{ fontSize: "42px"}}> Previous game: </p>
+                        <p className='fadein' style={{ fontSize: "32px", width: "100%", textAlign: "center" }}>{latestGameDate}</p>
+                            <table className='fadein' style={{ width: "90%", marginTop:"25px"}}>
+                                <tbody>
+                                    <tr style={{ textAlign: "left", fontSize: "24px" }}>
+                                        <td>
+                                            #
+                                        </td>
+                                        <td >
+                                            Name
+                                        </td>
+                                        <td>
+                                            Score
+                                        </td>
+                                    </tr>
+                                    {latestGameSimple &&
+                                        <PreviousGame leaderboard={latestGameSimple} />
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        {/* Buttons */}
+                        <div className='fadein' style={{display: "flex",justifyContent: "center"}}>
+                            <Button text="History" onClick={showHistoryModalHandler}  />
+                            { loggedIn &&
+                                <LinkButton text="Play" redirect={"../PlayGame"} params={{state:{loggedIn: loggedIn}}}/>
                             }
-                        </tbody>
-                    </table>
-                </div>
-
-                
-              
-                {/* Buttons */}
-                <div className='fadein' style={{display: "flex",justifyContent: "center"}}>
-                    <Button text="History" onClick={showHistoryModalHandler}  />
-                    { loggedIn &&
-                        <LinkButton text="Play" redirect={"../PlayGame"} params={{state:{loggedIn: loggedIn}}}/>
-                    }
-                    { guest && 
-                        <LinkButton text="Watch" redirect={"../Watch"}/>
-                    }
-                    {/* If Modal is visable (true) show it */}
-                    {showHistoryModal && <HistoryModal showHistoryModalHandler={showHistoryModalHandler}/>}
-
-                </div>
+                            { guest && 
+                                <LinkButton text="Watch" redirect={"../Watch"}/>
+                            }
+                            {/* If Modal is visable (true) show it */}
+                            {showHistoryModal && <HistoryModal showHistoryModalHandler={showHistoryModalHandler}/>}
+                        </div>
                     </>
                 }
             </div>

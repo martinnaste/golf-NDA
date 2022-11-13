@@ -11,20 +11,15 @@ const StaticRows:FC<IStaticRow> = (props) => {
                         <td>
                             {index + 1}.
                         </td>
-                        <td >
+                        <td>
                             {Player.Name}
                         </td>
-
                         <td>
                             {Player.Score}
                         </td>
-    
                     </tr>
                 )
             })
-
-            
-            
         )
     }
     
