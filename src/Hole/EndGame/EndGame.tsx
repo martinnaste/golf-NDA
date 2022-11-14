@@ -60,7 +60,8 @@ const EndGame: FC = () => {
             return await response.json();
         }).catch((err) => {
             var message = `There was an error with your authentication: ${err}`
-            alert(message);
+            // alert(message);
+            console.warn(message)
         });
 
         if(authed.authed) {
@@ -77,7 +78,8 @@ const EndGame: FC = () => {
                     setUploadMessage("Successfully uploaded this game!")
                 }
             }).catch(error => {
-                window.alert(error);
+                // window.alert(error);
+                console.warn("Error uploading this game.")
                 setUploadMessage("Error uploading this game :(")
                 return;
             });

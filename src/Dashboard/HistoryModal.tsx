@@ -21,7 +21,8 @@ const LoginModal: FC<IHistoryProps> = (props) => {
  
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
+            // window.alert(message);
+            console.warn(message)
             return;
         }
     

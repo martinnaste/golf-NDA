@@ -27,7 +27,8 @@ const Connect:FC = () => {
             getAccount()
             accountAddressShort()
         } else {
-            alert("Please use a browser with MetaMask Support")
+            // alert("Please use a browser with MetaMask Support")
+            console.log("Please use a browser with MetaMask Support")
         }
     };
 

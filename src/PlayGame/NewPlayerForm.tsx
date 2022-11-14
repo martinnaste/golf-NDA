@@ -58,7 +58,8 @@ const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
                 return await response.json();
             }).catch((err) => {
                 var message = `There was an error with your authentication: ${err}`
-                alert(message);
+                // alert(message);
+                console.warn(message)
             });
 
             if(authed.authed) {
@@ -79,7 +80,8 @@ const NewPlayerForm:FC<INewPlayerFormProps> = (props) => {
                         setAddedPlayersList(tempAddedPlayersList)
                     }
                 }).catch(error => {
-                    window.alert(error);
+                    // window.alert(error);
+                    console.warn(error)
                     return;
                 });
             } else {
