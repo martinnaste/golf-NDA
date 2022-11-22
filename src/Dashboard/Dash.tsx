@@ -45,22 +45,24 @@ const Dash: FC = () => {
         }
     
         const records = await response.json();
-        var date = new Date(records[0].dateTime).toDateString()
-        setLatestGameDate(date)
-        var sortedPlayers = records[0].Players.sort((a: any, b: any) => a.Score - b.Score)
-        var filtered: ISimplePlayersObj[] = []
-        sortedPlayers.forEach((player: any) => {
-            var filteredPLayer = {
-                Name: player.Name,
-                Score: player.Score
+        if(records.length) {
+            var date = new Date(records[0].dateTime).toDateString()
+            setLatestGameDate(date)
+            var sortedPlayers = records[0].Players.sort((a: any, b: any) => a.Score - b.Score)
+            var filtered: ISimplePlayersObj[] = []
+            sortedPlayers.forEach((player: any) => {
+                var filteredPLayer = {
+                    Name: player.Name,
+                    Score: player.Score
+                }
+                filtered.push(filteredPLayer)
+            })
+            var filteredLeaderboard: ILatestLeaderboardSimpleObj = {
+                Players: filtered
             }
-            filtered.push(filteredPLayer)
-        })
-        var filteredLeaderboard: ILatestLeaderboardSimpleObj = {
-            Players: filtered
+            setLatestGameSimple(filteredLeaderboard)
+            setLoading(false);
         }
-        setLatestGameSimple(filteredLeaderboard)
-        setLoading(false);
     }
 
 
