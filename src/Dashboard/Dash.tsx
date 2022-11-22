@@ -45,7 +45,7 @@ const Dash: FC = () => {
         }
     
         const records = await response.json();
-        if(records.length) {
+        if(records.length > 0) {
             var date = new Date(records[0].dateTime).toDateString()
             setLatestGameDate(date)
             var sortedPlayers = records[0].Players.sort((a: any, b: any) => a.Score - b.Score)
