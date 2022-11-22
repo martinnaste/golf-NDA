@@ -63,6 +63,7 @@ const Dash: FC = () => {
             setLatestGameSimple(filteredLeaderboard)
             setLoading(false);
         }
+        setLoading(false)
     }
 
 
