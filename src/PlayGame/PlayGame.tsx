@@ -22,7 +22,8 @@ const PlayGame: FC = () => {
     const [playerTable, setPlayerTable]= useState<IPlayer[]>()
     const [playingTable, setPlayingTable]= useState<IPlayer[]>()
 
-    const URL = `https://hypnos-dev-api.herokuapp.com`
+    // const URL = `https://hypnos-dev-api.herokuapp.com`
+    const URL = `https://golf-server-REPLIT.mpartynec.repl.co`
     useEffect(() => {
         getAllPlayers()
     // eslint-disable-next-line react-hooks/exhaustive-deps

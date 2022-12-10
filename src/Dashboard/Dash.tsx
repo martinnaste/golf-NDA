@@ -17,7 +17,8 @@ const Dash: FC = () => {
     const [latestGameSimple, setLatestGameSimple] = useState<ILatestLeaderboardSimpleObj>()
     const [latestGameDate, setLatestGameDate] = useState('')
 
-    const URL = `https://hypnos-dev-api.herokuapp.com`
+    // const URL = `https://hypnos-dev-api.herokuapp.com`
+    const URL = `https://golf-server-REPLIT.mpartynec.repl.co`
     
     useEffect(() => {
         getLatestLeaderboard();

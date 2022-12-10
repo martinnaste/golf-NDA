@@ -3,7 +3,8 @@ import "./Home.css"
 import HomeButtons from './HomeButtons'
 
 const Home:FC = () => {
-    const URL = `https://hypnos-dev-api.herokuapp.com`
+    // const URL = `https://hypnos-dev-api.herokuapp.com`
+    const URL = `https://golf-server-REPLIT.mpartynec.repl.co`
 
     useEffect(() => {
         fetchDB()

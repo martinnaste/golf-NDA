@@ -9,7 +9,8 @@ const LoginModal: FC<IHistoryProps> = (props) => {
     const [selectedLeaderboard, setSelectedLeaderboard] = useState<ILeaderboardObj>()
     const [gameSelected, setGameSelected] = useState(-1)
     const [loading, setLoading] = useState(true);
-    const URL = `https://hypnos-dev-api.herokuapp.com`
+    // const URL = `https://hypnos-dev-api.herokuapp.com`
+    const URL = `https://golf-server-REPLIT.mpartynec.repl.co`
     
     useEffect(() => {
         getAllLeaderboards()

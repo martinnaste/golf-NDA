@@ -9,7 +9,8 @@ import EndGame from './Hole/EndGame/EndGame';
 import Watch from './Dashboard/Watch';
 import socketIO from 'socket.io-client'
 
-const URL = `https://hypnos-dev-api.herokuapp.com`
+// const URL = `https://hypnos-dev-api.herokuapp.com`
+const URL = `https://golf-server-REPLIT.mpartynec.repl.co`
 export const socket = socketIO(URL);
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);

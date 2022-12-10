@@ -9,7 +9,8 @@ import LinkButton from '../../LinkButton'
 import { useLocation } from 'react-router-dom'
 import StaticRows from './StaticRows'
 import { socket } from '../../index'
-const URL = `https://hypnos-dev-api.herokuapp.com`
+// const URL = `https://hypnos-dev-api.herokuapp.com`
+const URL = `https://golf-server-REPLIT.mpartynec.repl.co`
 
 
 const EndGame: FC = () => {
